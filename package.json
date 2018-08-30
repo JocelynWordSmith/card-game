@@ -19,7 +19,7 @@
     "react-dom": "16.1.1"
   },
   "devDependencies": {
-    "enzyme": "3.2.0",
+    "enzyme": "^3.5.0",
     "prettier": "1.8.2"
   },
   "scripts": {
