@@ -1,19 +1,15 @@
 import React from 'react'
 
-import Timer from '../Timer/Timer'
 import GameBoard from '../GameBoard/GameBoard'
-import Menu from '../Menu/Menu'
-import Messenger from '../Messenger/Messenger'
 
-// import styles from './Game.scss'
+import styles from './Game.scss'
 
 const Game = () => (
-  <div>
+  <div className={styles.Game}>
     <h2>Game</h2>
-    Messenger: <Messenger />
-    Menu: <Menu />
-    Timer: <Timer />
-    GameBoard: <GameBoard />
+    <div className={styles.GameContainer}>
+      <GameBoard />
+    </div>
   </div>
 )
 

@@ -1,5 +1,5 @@
 import React from 'react'
 
-const Card = () => <div />
+const Card = () => <div className="Card">Card</div>
 
 export default Card

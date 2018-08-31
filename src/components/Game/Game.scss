@@ -1,10 +1,9 @@
-$hey-look-at-me-im-a-sass-variable: #333;
-
-.header {
-  color: $hey-look-at-me-im-a-sass-variable;
-  font-family: sans-serif;
-}
-
-.placeholder {
-  font-style: italic;
+.Game {
+  margin: 10px;
+  padding: 10px 10px 15px 10px;
+  background: slategray;
+  width: 49%;
+  > h2 {
+      color: white;
+  }
 }
