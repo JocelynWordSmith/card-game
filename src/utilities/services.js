@@ -13,12 +13,13 @@ const getPayload = (payloadId, force) =>
     let { response, url } = payloads[payloadId]
     if (!response || force) {
       // TODO replace with actual AJAX call
-      setTimeout(() => {
+      return setTimeout(() => {
         response = GAME_DATA
         payloads[payloadId].response = response
         resolve(response)
-      }, 600)
+      }, 500)
     }
+    return resolve(response)
   })
 
 export default getPayload

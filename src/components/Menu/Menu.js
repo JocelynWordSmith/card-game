@@ -3,11 +3,11 @@ import React from 'react'
 import GameConfig from '../GameConfig/GameConfig'
 import styles from './Menu.scss'
 
-const Menu = () => (
+const Menu = ({ difficulty }) => (
   <div className={styles.Menu}>
     <h2>Menu</h2>
     <p>Instructions</p>
-    <GameConfig />
+    <GameConfig difficulty={difficulty} />
   </div>
 )
 
