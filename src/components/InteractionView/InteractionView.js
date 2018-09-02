@@ -11,13 +11,11 @@ class InteractionView extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      turn: this.props.gameCounter(),
-      gameCounter: this.props.gameCounter,
       difficulty: gameSetting(difficultySetting),
     }
   }
 
-  gameStartCallback({ started }) {
+  gameStartCallback(started) {
     if (started) {
       this.setState({
         started,
@@ -34,9 +32,9 @@ class InteractionView extends React.Component {
   }
 
   render() {
-    const { gameCounter, difficulty } = this.state
+    const { difficulty } = this.state
     if (this.state.started) {
-      return <GameBoard gameCounter={gameCounter} difficulty={difficulty()} />
+      return <GameBoard difficulty={difficulty()} />
     }
     return <Menu difficulty={difficulty} />
   }

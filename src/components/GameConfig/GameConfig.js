@@ -2,7 +2,7 @@ import Async from 'react-promise'
 import React from 'react'
 
 import getPayload from '../../utilities/services'
-import { keygen, events } from '../../utilities/agnostic'
+import { mapIdToArr, events } from '../../utilities/agnostic'
 
 // CONFIG ITEMS
 // move these somewhere else
@@ -29,9 +29,9 @@ const GameOptionSubmit = ({ disabled }) => (
 
 const OptionCollection = ({ optionData }) =>
   optionData.map(item => {
-    const value = item[optionTextTarget]
+    const value = item.val[optionTextTarget]
     return (
-      <option key={keygen()} value={value}>
+      <option key={item.id} value={value}>
         {value}
       </option>
     )
@@ -42,12 +42,13 @@ class GameOptionDropDown extends React.Component {
     super(props)
     this.difficulty = props.difficulty
     this.setDifficulty = this.setDifficulty.bind(this)
+    this.optionData = mapIdToArr(this.props.optionData)
   }
   setDifficulty(event) {
     this.difficulty(event.target.value)
   }
   render() {
-    const { optionData } = this.props
+    const { optionData } = this
     return (
       <div>
         <label htmlFor={dropdownId}>{dropdownLabel}</label>
@@ -59,9 +60,7 @@ class GameOptionDropDown extends React.Component {
     )
   }
   componentDidMount() {
-    this.difficulty(this.props.optionData[0][optionTextTarget])
-    // TODO temporary to get to game page faster
-    events.pub(startGameNamespace, true)
+    this.difficulty(this.optionData[0].val[optionTextTarget])
   }
 }
 

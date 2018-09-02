@@ -2,8 +2,19 @@
     margin: 10px;
     padding: 10px 10px 15px 10px;
     background: slategray;
-    width: 49%;
+    width: 97%;
+    display: flex;
     > h2 {
         color: white;
+    }
+    button, select {
+        font-size: 18px;
+        margin: 10px;
+        float: left;
+        height: 45px;
+        width: 45px;
+    }
+    button:focus {
+        outline: solid 4px blue;
     }
   }

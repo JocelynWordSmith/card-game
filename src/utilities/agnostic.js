@@ -13,6 +13,12 @@ const keygenClosure = function() {
 // ensures there is only one 'keygen' number
 const keygen = keygenClosure()
 
+const mapIdToArr = arr =>
+  arr.map(item => ({
+    val: item,
+    id: keygen(),
+  }))
+
 const events = {
   events: {},
   pub(eventName, data) {
@@ -21,6 +27,7 @@ const events = {
       obj.data = data
       obj.fn(data)
     })
+    // console.log(`pub-${eventName}: ${JSON.stringify(data)}`)
   },
   sub(eventName, fn) {
     this.events[eventName] = this.events[eventName] || []
@@ -29,6 +36,9 @@ const events = {
       data: null,
     })
     const idx = this.events[eventName].length - 1
+    // console.log(`sub-${eventName}`)
+    // TODO found bug with this unsub function where
+    // this.state.matched and will fix it later
     return () => this.events[eventName].splice(idx, 1)
   },
   off(eventName, fn) {
@@ -44,13 +54,13 @@ const events = {
 }
 
 function counter(nameSpace, turns = 0) {
-  return function add(sign) {
-    if (sign) {
+  let prev = {}
+  return function add(sign, match) {
+    if (sign || sign === null) {
       turns += 1
-      events.pub(nameSpace, {
-        turns,
-        sign,
-      })
+      const next = { turns, sign, match: !!match, prev }
+      events.pub(nameSpace, next)
+      prev = next
     }
     return turns
   }
@@ -68,11 +78,13 @@ function gameSetting(nameSpace) {
 }
 
 // Durstenfeld shuffle, found online
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[array[i], array[j]] = [array[j], array[i]]
-  }
-}
+// function shuffleArray(array) {
+//   for (let i = array.length - 1; i > 0; i -= 1) {
+//     const j = Math.floor(Math.random() * (i + 1))
+//     ;[array[i], array[j]] = [array[j], array[i]]
+//   }
+// }
 
-export { keygen, counter, events, gameSetting, shuffleArray }
+const byTwo = num => !!num && !(num % 2)
+
+export { counter, events, gameSetting, mapIdToArr, byTwo }
