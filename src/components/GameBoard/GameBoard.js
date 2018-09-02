@@ -24,32 +24,42 @@ class Cards extends React.Component {
     this.state = { matches: 0 }
     this.setupCardData()
     this.gameCounter = counter(turnCountNameSpace)
+    this.listenForCardMatch = this.listenForCardMatch.bind(this)
+    this.getPayloadCallback = this.getPayloadCallback.bind(this)
   }
-  componentDidMount() {
-    this.listenForCardMatch()
-  }
-  listenForCardMatch() {
-    events.sub(turnCountNameSpace, turnData => {
-      const matches = this.state.matches + turnData.match
-      this.setState({ matches })
-      if (matches >= this.state.cardData.length / 2) {
-        events.pub(endGameNamespace, true)
-      }
-    })
-  }
-  setupCardData() {
-    const { difficulty } = this.props
-    getPayload(payloadId).then(response => {
-      const payload = response[payloadTarget]
-      const difficultyLevels = payload.filter(level => level[optionTextTarget] === difficulty)
-      const cardData = mapIdToArr(difficultyLevels[0][cardSignKey])
 
-      this.setState({ cardData })
-    })
+  componentDidMount() {
+    events.sub(turnCountNameSpace, this.listenForCardMatch)
   }
+
+  gameOver(matches) {
+    return matches >= this.state.cardData.length / 2
+  }
+
+  listenForCardMatch(turnData) {
+    const matches = this.state.matches + turnData.match
+    this.setState({ matches })
+
+    if (this.gameOver(matches)) events.pub(endGameNamespace, true)
+  }
+
+  getPayloadCallback(response) {
+    const { difficulty } = this.props
+    const payload = response[payloadTarget]
+    const difficultyLevels = payload.filter(level => level[optionTextTarget] === difficulty)
+    const cardData = mapIdToArr(difficultyLevels[0][cardSignKey])
+
+    this.setState({ cardData })
+  }
+
+  setupCardData() {
+    getPayload(payloadId).then(this.getPayloadCallback.bind(this))
+  }
+
   render() {
     const { gameCounter } = this
     const { cardData } = this.state
+
     return <CardCollection gameCounter={gameCounter} cardData={cardData} />
   }
 }

@@ -12,7 +12,7 @@ const keygenClosure = function() {
 }
 // ensures there is only one 'keygen' number
 const keygen = keygenClosure()
-
+// assign unique id to array elements
 const mapIdToArr = arr =>
   arr.map(item => ({
     val: item,
@@ -52,20 +52,18 @@ const events = {
     }
   },
 }
-
+// shared counter for game turns
 function counter(nameSpace, turns = 0) {
-  let prev = {}
   return function add(sign, match) {
     if (sign || sign === null) {
       turns += 1
-      const next = { turns, sign, match: !!match, prev }
+      const next = { turns, sign, match }
       events.pub(nameSpace, next)
-      prev = next
     }
     return turns
   }
 }
-
+// shared tracker for game difficulty
 function gameSetting(nameSpace) {
   let setting = null
   return function set(newSetting) {

@@ -2,17 +2,13 @@
 
 **Reminder**
 
-Keep it simple until you cant
-
-composition > inheritance
-
-functions / classes, but classes arent bad
-
-dont solve problems you dont have
-
-dont optimize until you're done
-
-but don't be too lazy, don't be too clever
+- Keep it simple until you cant
+- dont solve problems you dont have
+- dont optimize until you're done
+- dont hide text for screen readers that others might use
+- composition > inheritance
+- functions > classes, but classes arent bad
+- usability and scalability > clever code
 
 ## REQUIREMENTS
 
@@ -25,27 +21,41 @@ but don't be too lazy, don't be too clever
 1. [x] WHEN then game ends, the timer will stop
 1. [ ] card data will be fetched from [this url](https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json)
 
-## will shuffle stuff between stages depending on work chunking
-
 ## STAGE 2
 
-- [ ] all card positions must be announced in order to communicate info to screen readers
-- [x] move card 'type' into state
-- [ ] impliment a better visual design for all interactions
-- [ ] WHILE the title screen is loading, the object from [this url](https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json) will be fetched
-- [ ] each card will have visible identifying text (row and column)
-- [ ] The data will be stored in memory
-- [ ] the cards will be in a pseudo random ordering by their designated symbols (i should say the _symbols_ will be in a pseudo random order since the cards don't really care)
-- [ ] each card will have visible interaction instructions (click/press/select card to flip)
+### Usability
+
+- [ ] all card signs must be announced when cards are shown in order to communicate info to screen readers
+- [ ] implement a better visual design for all interactions
+- [ ] each card will have visible interaction instructions (click/press/select card to flip) for sighted users with other impairments
+- [x] ~~each card will have visible identifying text (row and column)~~ will not do since viewport dictates row/col
 - [ ] the button will have supplemental text indicating it is selected (primarily for screen readers)
-- a significant border color change will occur (dark red or blue for contrast sake)
-- and aria-pressed="true"
-- THEN a message indicating that the cards DO NOT match will be injected into an aria live container/header which is visible
-- THEN a message indicating that the cards match will be injected into an aria live container/header which is visible
-- AND a message indicating that the cards match will appear on the card to seperate it from selected cards in play
-- AND the user will returned to the title screen
+- [ ] a significant border color change will occur (dark red or blue for contrast sake)
+- [ ] aria-pressed or aria-selected true/false to indicate card state
+- [ ] a message indicating that the cards DO or DO NOT match will be injected into an aria live container/header which is visible
+- [ ] a message indicating that the cards match will appear on the card to seperate it from selected cards in play
+
+### Gameplay
+
+- [ ] the cards will be in a pseudo random ordering by their designated symbols (i should say the _symbols_ will be in a pseudo random order since the cards don't really care)
+- [ ]the user can return to the title screen after completion
+- [ ] WHILE the title screen is loading, the object from [this url](https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json) will be fetched
+
+### Scalability
+
+- [x] split out crowded code
+- [ ] fix pub/sub so that unsub works
+- [ ] create unopinionated data format in services to only return requested data
+- [ ] The API data will be stored in memory
+- [x] move card 'type' into state
+
+
+
+
+
 
 ## STAGE 3
+- [ ] TEST YOUR SHIT
 - refactor Overall code clarity and organization
 - refactor State management
 - refactor Attention to detail

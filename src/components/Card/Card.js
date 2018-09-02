@@ -1,7 +1,10 @@
 import React from 'react'
 import { events, byTwo } from '../../utilities/agnostic'
 
+// non props shared config
+// putting at top for easier changes
 const turnCountNameSpace = 'cardClicked'
+const revertDelay = 400
 
 class Card extends React.Component {
   constructor(props) {
@@ -13,63 +16,74 @@ class Card extends React.Component {
       lastClick: {},
     }
     this.handleClick = this.handleClick.bind(this)
-    this.count = 0
+    this.handleCountIncrease = this.handleCountIncrease.bind(this)
   }
+
+  signMatch(sign) {
+    return this.props.sign === sign
+  }
+
   handleCountIncrease(lastClick) {
     const { disabled } = this.state
-    const { turns } = lastClick
+    const { turns, sign } = lastClick
     const isRoundTwo = byTwo(turns)
-    const { sign } = this.props
-    const matched = lastClick.sign === sign
-    if (this.state.matched || !disabled || !isRoundTwo) {
-      this.setState({ lastClick, turns })
-      return lastClick
-    }
-    this.setState({ lastClick, turns, disabled: matched, matched })
-    return lastClick
+    const matched = this.signMatch(sign)
+    const noUIChange = this.state.matched || !disabled || !isRoundTwo
+    if (noUIChange) return this.setState({ lastClick, turns })
+    return this.setState({ lastClick, turns, disabled: matched, matched })
   }
 
   componentDidMount() {
-    this.countSub = events.sub(turnCountNameSpace, this.handleCountIncrease.bind(this))
+    this.countSub = events.sub(turnCountNameSpace, this.handleCountIncrease)
   }
-  handleClick() {
-    if (this.state.matched || this.state.disabled) return false
-    // since state isnt updated till the end of this function
-    // we add 1 to turns inside this function
-    if (!byTwo(this.state.turns + 1)) {
-      this.setState({ disabled: true }, () => {
-        this.props.gameCounter(this.props.sign, false)
-      })
-      return false
-    }
-    return this.matchCheck()
-  }
-  matchCheck() {
-    const { lastClick } = this.state
-    const { sign } = lastClick
 
-    const matched = sign === this.props.sign
-    const disabled = matched
-
-    this.setState({ disabled: true }, () => {
-      setTimeout(() => {
-        this.setState({ disabled }, () => {
-          this.props.gameCounter(this.props.sign, matched)
-        })
-      }, 400)
+  updateCounter(disabled, matched) {
+    const { sign, gameCounter } = this.props
+    this.setState({ disabled }, () => {
+      gameCounter(sign, matched)
     })
     return matched
   }
+
+  delayedCount(disabled, matched) {
+    setTimeout(() => {
+      this.updateCounter(disabled, matched)
+    }, revertDelay)
+  }
+
+  handleClick() {
+    const { matched, disabled, turns } = this.state
+    // if it should be disabled leave it alone
+    if (matched || disabled) return false
+    // if this is the first click of the turn, disable card
+    if (!byTwo(turns + 1)) return this.updateCounter(true, false)
+    // otherwise check if it has been matched
+    return this.matchCheck()
+  }
+
+  matchCheck() {
+    const { lastClick: { sign } } = this.state
+    const matched = this.signMatch(sign)
+
+    this.setState({ disabled: true }, () => this.delayedCount(matched, matched))
+    return matched
+  }
+
+  static getClassname(disabled, matched) {
+    if (matched) return 'matched'
+    if (disabled) return 'disabled'
+    return 'active'
+  }
+
   render() {
     const { disabled, matched } = this.state
     const { sign } = this.props
-    let classname = 'active'
-    // TODO dont short circuit
-    disabled && (classname = 'disabled')
-    matched && (classname = 'matched')
+    const { getClassname } = this.constructor
+    const classname = getClassname(disabled, matched)
+
     return (
       <div>
-        <button className={classname} value={sign} onClick={this.handleClick}>
+        <button className={classname} onClick={this.handleClick}>
           {disabled ? sign : 'x'}
         </button>
       </div>

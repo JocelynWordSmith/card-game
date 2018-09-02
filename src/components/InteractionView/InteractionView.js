@@ -17,12 +17,11 @@ class InteractionView extends React.Component {
 
   gameStartCallback(started) {
     if (started) {
-      this.setState({
-        started,
-      })
+      this.setState({ started })
       this.gameStartUnsub()
     }
   }
+
   listenForFirstTurn() {
     return events.sub(startGameNamespace, this.gameStartCallback.bind(this))
   }
@@ -33,6 +32,7 @@ class InteractionView extends React.Component {
 
   render() {
     const { difficulty } = this.state
+
     if (this.state.started) {
       return <GameBoard difficulty={difficulty()} />
     }

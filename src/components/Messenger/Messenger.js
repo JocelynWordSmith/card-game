@@ -38,15 +38,18 @@ class Messenger extends React.Component {
       this.setState({ gameEnd })
     })
   }
+
   getMessage() {
     const { turns, gameStart, gameEnd } = this.state
     if (!gameStart) return messages.title
     if (gameEnd) return messages.victory
     if (turns % 2 === 0) return messages.round1
-    if (turns % 2 === 1) return messages.round2
+    return messages.round2
   }
+
   render() {
     const { turns } = this.state
+
     return (
       <div className={styles.Messenger}>
         <h1 aria-live="assertive" className={styles.Messenger}>
