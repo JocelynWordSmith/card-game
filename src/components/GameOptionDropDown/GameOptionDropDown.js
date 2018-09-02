@@ -76,7 +76,4 @@ class GameOptionDropDown extends React.Component {
   }
 }
 
-export default {
-  DisabledDropdown,
-  GameOptionDropDown,
-}
+export { DisabledDropdown, GameOptionDropDown }
