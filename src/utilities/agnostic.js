@@ -1,17 +1,35 @@
+import { keygen } from './keygen'
+
 // This file should only contain vanilla methods without 3rd party dependencies
 // avoid importing unless this file gets larger and needs to be split up
 
-// This is for making unique keys when creating component collections without meaningful identifiers
-// keeps it simple for now, might need a way to/manage keys later
-const keygenClosure = function() {
-  let count = 0
-  return function nextKey() {
-    count += 1
-    return count
-  }
+const events = {
+  events: {},
+  pub(eventName, data) {
+    this.events[eventName] = this.events[eventName] || { data: null, subs: {} }
+    const eventToPub = this.events[eventName]
+    const callbacksToRun = eventToPub.subs
+
+    eventToPub.data = data
+    Object.keys(callbacksToRun).forEach(key => {
+      callbacksToRun[key](data)
+    })
+    // console.log(`pub-${eventName}: ${JSON.stringify(data)}`)
+  },
+  sub(eventName, fn, initCall) {
+    this.events[eventName] = this.events[eventName] || { data: null, subs: {} }
+    const { data } = this.events[eventName]
+    const subKey = keygen()
+    const unsub = () => delete this.events[eventName].subs[subKey]
+
+    this.events[eventName].subs[subKey] = fn
+    if (initCall) fn(data)
+
+    return unsub
+    // console.log(`sub-${eventName}: ${JSON.stringify(data)}`)
+  },
 }
-// ensures there is only one 'keygen' number
-const keygen = keygenClosure()
+
 // assign unique id to array elements
 const mapIdToArr = arr =>
   arr.map(item => ({
@@ -19,39 +37,6 @@ const mapIdToArr = arr =>
     id: keygen(),
   }))
 
-const events = {
-  events: {},
-  pub(eventName, data) {
-    this.events[eventName] = this.events[eventName] || []
-    this.events[eventName].forEach(obj => {
-      obj.data = data
-      obj.fn(data)
-    })
-    // console.log(`pub-${eventName}: ${JSON.stringify(data)}`)
-  },
-  sub(eventName, fn) {
-    this.events[eventName] = this.events[eventName] || []
-    this.events[eventName].push({
-      fn,
-      data: null,
-    })
-    const idx = this.events[eventName].length - 1
-    // console.log(`sub-${eventName}`)
-    // TODO found bug with this unsub function where
-    // this.state.matched and will fix it later
-    return () => this.events[eventName].splice(idx, 1)
-  },
-  off(eventName, fn) {
-    if (this.events[eventName]) {
-      for (let i = 0; i < this.events[eventName].length; i += 1) {
-        if (this.events[eventName][i] === fn) {
-          this.events[eventName].splice(i, 1)
-          break
-        }
-      }
-    }
-  },
-}
 // shared counter for game turns
 function counter(nameSpace, turns = 0) {
   return function add(sign, match) {
@@ -63,6 +48,7 @@ function counter(nameSpace, turns = 0) {
     return turns
   }
 }
+
 // shared tracker for game difficulty
 function gameSetting(nameSpace) {
   let setting = null

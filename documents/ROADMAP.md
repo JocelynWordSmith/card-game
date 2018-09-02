@@ -44,7 +44,8 @@
 ### Scalability
 
 - [x] split out crowded code
-- [ ] fix pub/sub so that unsub works
+- [x] fix pub/sub so that unsub works
+- [x] can now sub with third param and if event was already pubbed, the callback will fire
 - [ ] create unopinionated data format in services to only return requested data
 - [ ] The API data will be stored in memory
 - [x] move card 'type' into state
