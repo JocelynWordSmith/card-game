@@ -64,6 +64,7 @@ class Card extends React.Component {
     const { disabled, matched } = this.state
     const { sign } = this.props
     let classname = 'active'
+    // TODO dont short circuit
     disabled && (classname = 'disabled')
     matched && (classname = 'matched')
     return (
