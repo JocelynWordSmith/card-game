@@ -27,7 +27,7 @@
 
 ## STAGE 3
 
-- [ ] fix bug where cards are clickable during revertDelay
+- [x]] fix bug where cards are clickable during revertDelay
 - [ ] leader board using persisted storage from stage two
 - [ ] BLOCKED until i add the leader board
   - implement a better visual design for all interactions (just focus on mobile and use flexbox, desktop should be easy after)

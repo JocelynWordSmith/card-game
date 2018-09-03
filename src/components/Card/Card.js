@@ -12,6 +12,11 @@ const hiddenSrSign = 'hidden'
 const getLabel = (idx, sign, matched) =>
   `card number ${idx + 1}'s card face is ${sign}. ${matched ? 'this card has been matched' : ''}`
 
+// bugfix to keep cards from being selected while the unmatched cards are visible
+// (i.e. when the second card is clicked but the revert delay hasn't finished)
+// this fixes the issue without adding complexity to the program,
+let delayActive = false
+
 class Card extends React.Component {
   constructor(props) {
     super(props)
@@ -56,15 +61,17 @@ class Card extends React.Component {
   }
 
   delayedCount(disabled, matched) {
+    delayActive = true
     setTimeout(() => {
       this.updateCounter(disabled, matched)
+      delayActive = false
     }, revertDelay)
   }
 
   handleClick() {
     const { matched, disabled, turns } = this.state
     // if it should be disabled leave it alone
-    if (matched || disabled) return false
+    if (matched || disabled || delayActive) return false
     // if this is the first click of the turn, disable card
     if (!byTwo(turns + 1)) return this.updateCounter(true, false)
     // otherwise check if it has been matched
