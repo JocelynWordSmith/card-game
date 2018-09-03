@@ -2,7 +2,7 @@ import React from 'react'
 
 import GameBoard from '../GameBoard/GameBoard'
 import Menu from '../Menu/Menu'
-import { events, gameSetting } from '../../utilities/agnostic'
+import { events, gameSetting } from '../../utilities/utilities'
 
 const difficultySetting = 'difficulty'
 const startGameNamespace = 'gameStart'

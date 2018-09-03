@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { mapIdToArr, events } from '../../utilities/agnostic'
+import { mapIdToArr, events } from '../../utilities/utilities'
 
 const startGameNamespace = 'gameStart'
 const optionTextTarget = 'difficulty'

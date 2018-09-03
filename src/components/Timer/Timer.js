@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import styles from './Timer.scss'
-import { events } from '../../utilities/agnostic'
+import { events } from '../../utilities/utilities'
 
 export const formatTime = time => {
   if (time < 0) return '--:--'
@@ -33,19 +33,23 @@ class TimerContainer extends React.Component {
 
   componentDidMount() {
     this.interval = setInterval(this.tick.bind(this), 1000)
-    events.sub(endGameNamespace, () => {
+    this.endSub = events.sub(endGameNamespace, () => {
       clearInterval(this.interval)
     })
   }
 
   componentWillUnmount() {
+    this.endSub()
     clearInterval(this.interval)
   }
 
   tick() {
+    const { timerNamepace } = this.props
+    const seconds = this.state.secondsElapsed + 1
     this.setState({
-      secondsElapsed: this.state.secondsElapsed + 1,
+      secondsElapsed: seconds,
     })
+    events.pub(timerNamepace, seconds)
   }
 
   render() {

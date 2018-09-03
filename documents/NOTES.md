@@ -1,7 +1,8 @@
 # Notes while i work
 
 ## STAGE 1
-* plan on making the thing accessible from the get go, since its easier to do it now
+* plan on making everything accessible from the get go, since its easier to do it now
+* should be able to use it using only a keyboard or with any screen reader
 * Initial design doc didnt quite work out like i wanted, trying to reduce the amount of state im using and use functional components instead
 * keep working on POC, dont revise docs until you are finished with POC
 * I am going to try passing down callbacks for child -> parent communication and try to keep the state as "low" as possible, but might need to refactor if it breaks/muddles the direction of data flow. I think it will be simpler to manage than global state as long as I can keep things reasonably decoupled
@@ -19,3 +20,8 @@
 * i spent too much time solving potential problems
 * i think i overused enclosure creation in a couple places but already fixed most of them. might actually reintroduce it in on place to fix bug tho
 * theres a power outage in my neighborhood hopefully i found all of my react gotchas
+
+## STAGE 2
+* using node-fetch for api fetching
+* using idb-keyval for a lightweight indexedDB implimentation in case i get storing a full game state or running the app offline
+* since i originally made the services util return a promise, swapping in the libraries was easy since they both use promises

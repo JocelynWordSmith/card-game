@@ -1,8 +1,7 @@
 import React from 'react'
 
 import Card from '../Card/Card'
-import getPayload from '../../utilities/services'
-import { events, mapIdToArr, counter } from '../../utilities/agnostic'
+import { getPayload, shuffleArray, events, mapIdToArr, counter } from '../../utilities/utilities'
 import styles from './GameBoard.scss'
 
 const payloadId = 'GAME_DATA'
@@ -29,7 +28,10 @@ class Cards extends React.Component {
   }
 
   componentDidMount() {
-    events.sub(turnCountNameSpace, this.listenForCardMatch)
+    this.turnCountUnsub = events.sub(turnCountNameSpace, this.listenForCardMatch)
+  }
+  componentWillUnmount() {
+    this.turnCountUnsub()
   }
 
   gameOver(matches) {
@@ -47,7 +49,8 @@ class Cards extends React.Component {
     const { difficulty } = this.props
     const payload = response[payloadTarget]
     const difficultyLevels = payload.filter(level => level[optionTextTarget] === difficulty)
-    const cardData = mapIdToArr(difficultyLevels[0][cardSignKey])
+    const shuffleCards = shuffleArray(difficultyLevels[0][cardSignKey])
+    const cardData = mapIdToArr(shuffleCards)
 
     this.setState({ cardData })
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { events, byTwo } from '../../utilities/agnostic'
+import { events, byTwo } from '../../utilities/utilities'
 
 // non props shared config
 // putting at top for easier changes
@@ -35,6 +35,10 @@ class Card extends React.Component {
 
   componentDidMount() {
     this.countSub = events.sub(turnCountNameSpace, this.handleCountIncrease)
+  }
+
+  componentWillUnmount() {
+    this.countSub()
   }
 
   updateCounter(disabled, matched) {
@@ -83,7 +87,7 @@ class Card extends React.Component {
 
     return (
       <div>
-        <button className={classname} onClick={this.handleClick}>
+        <button className={classname} onClick={this.handleClick} aria-pressed={disabled}>
           {disabled ? sign : 'x'}
         </button>
       </div>

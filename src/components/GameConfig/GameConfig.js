@@ -1,7 +1,7 @@
 import Async from 'react-promise'
 import React from 'react'
 
-import getPayload from '../../utilities/services'
+import { getPayload } from '../../utilities/utilities'
 import { GameOptionDropDown, DisabledDropdown } from '../GameOptionDropDown/GameOptionDropDown'
 
 // CONFIG ITEMS

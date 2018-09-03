@@ -2,7 +2,7 @@ import React from 'react'
 
 import GameConfig from '../GameConfig/GameConfig'
 import styles from './Menu.scss'
-import { mapIdToArr } from '../../utilities/agnostic'
+import { mapIdToArr } from '../../utilities/utilities'
 
 const getInstructionData = () => {
   const header = 'Memory Game Instructions'

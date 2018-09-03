@@ -19,7 +19,7 @@
     - If they do not match, both cards turn back over
 1. [x] WHEN no cards remain in play the game ends
 1. [x] WHEN then game ends, the timer will stop
-1. [ ] card data will be fetched from [this url](https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json)
+1. [x] card data will be fetched from [this url](https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json)
 
 ## STAGE 2
 
@@ -27,35 +27,32 @@
 
 - [ ] all card signs must be announced when cards are shown in order to communicate info to screen readers
 - [ ] implement a better visual design for all interactions
-- [ ] each card will have visible interaction instructions (click/press/select card to flip) for sighted users with other impairments
-- [x] ~~each card will have visible identifying text (row and column)~~ will not do since viewport dictates row/col
 - [ ] the button will have supplemental text indicating it is selected (primarily for screen readers)
 - [ ] a significant border color change will occur (dark red or blue for contrast sake)
 - [ ] aria-pressed or aria-selected true/false to indicate card state
 - [ ] a message indicating that the cards DO or DO NOT match will be injected into an aria live container/header which is visible
-- [ ] a message indicating that the cards match will appear on the card to seperate it from selected cards in play
+- [ ] a message indicating that the cards match will appear on the card to separate it from selected cards in play
+- [x] ~~each card will have visible identifying text (row and column)~~ will not do since viewport dictates row/col
+- [x] ~~each card will have visible interaction instructions (click/press/select card to flip) for sighted users with other impairments~~ instead of this i will have persisted instructions on the page
 
 ### Gameplay
 
-- [ ] the cards will be in a pseudo random ordering by their designated symbols (i should say the _symbols_ will be in a pseudo random order since the cards don't really care)
+- [x] the cards will be in a pseudo random ordering by their designated symbols (i should say the _symbols_ will be in a pseudo random order since the cards don't really care)
 - [ ]the user can return to the title screen after completion
-- [ ] WHILE the title screen is loading, the object from [this url](https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json) will be fetched
+- [x] ~~WHILE the title screen is loading, the object from [this url](https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json) will be fetched~~ i store it, but i don't get it until requested so i only half did this
 
 ### Scalability
 
+- [ ] create unopinionated data format in services to only return requested data
 - [x] split out crowded code
 - [x] fix pub/sub so that unsub works
 - [x] can now sub with third param and if event was already pubbed, the callback will fire
-- [ ] create unopinionated data format in services to only return requested data
-- [ ] The API data will be stored in memory
+- [x] The API data will be stored in memory
 - [x] move card 'type' into state
-
-
-
-
-
+- [x] if the cards request fails, the game will have fallback options for local play
 
 ## STAGE 3
+
 - [ ] TEST YOUR SHIT
 - refactor Overall code clarity and organization
 - refactor State management
@@ -65,33 +62,32 @@
     - look at making it a table (sometimes easier for screen readers) or a non submitting form (just for semantic purposes)
 - [ ] impliment local storage using index db for persitant games and game state
 
-##STAGE 4
-- IF the cards request fails, the game will have fallback options for local play
+## STAGE 4
+
 - fullscreen mode
 - improved scoring system
 - leaderboard using persisted storage from stage two
 
 ## STAGE 5
+
 - Polish the hell out of everything
 - dev test, get a few people to play it
 - get it on a ghpages site
 - write some tests, run some audits, try to break it
 
 ## STAGE 6
+
 - Beat the clock
 - local head to head
 - local head to head against computer
-- local unlimited game that gets harder (using reshuffles and scrolling maybe?)
 
 ## STAGE 7
+
 - online play vs person
+- online play of the additional game types
+- local unlimited game that gets harder (using reshuffles and scrolling maybe?)
 
 ## STAGE 8
-- online play of the additional game types
 
-## STAGE 9
 - toggleable audio (toggle state stored in db)
 - social api interaction
-
-## STAGE 10
-- its probs been like a week by now you should turn it in
