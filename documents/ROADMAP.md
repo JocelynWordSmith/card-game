@@ -21,46 +21,37 @@
 1. [x] WHEN then game ends, the timer will stop
 1. [x] card data will be fetched from [this url](https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json)
 
+## STAGE 1 completed (moved to COMPLETED.md)
+
+## STAGE 2 completed (moved to COMPLETED.md)
+
 ## STAGE 3
 
-- fix bug where cards are clickable during revertDelay
+- [ ] fix bug where cards are clickable during revertDelay
+- [ ] leader board using persisted storage from stage two
+- [ ] BLOCKED until i add the leader board
+  - implement a better visual design for all interactions (just focus on mobile and use flexbox, desktop should be easy after)
+- [ ] TEST YOUR SHIT (write tests, run audits)
+- [ ] refactor State management
+- [ ] revisit semantics
+- [ ] persist games and game state
+- [x] refactor User experience
+- [x] refactor Overall code clarity and organization
+
+## STAGE 4 (probably not getting here)
+
 - [ ] create unopinionated data format in services to only return requested data
-- [ ] implement a better visual design for all interactions
-- [ ] TEST YOUR SHIT
-- refactor Overall code clarity and organization
-- refactor State management
-- refactor Attention to detail
-- refactor User experience
-    - make the card flips animate
-    - look at making it a table (sometimes easier for screen readers) or a non submitting form (just for semantic purposes)
-- persit games and game state
+- [ ] fullscreen mode
+- [ ] improved scoring system
+- [ ] get it on a ghpages site
+- [ ] Beat the clock mode
+- [ ] local head to head mode
+- [ ] local head to head against computer mode
 
-## STAGE 4
+## STAGE 5 (lol, if i really want to push the "no time limit")
 
-- fullscreen mode
-- improved scoring system
-- leaderboard using persisted storage from stage two
-
-## STAGE 5
-
-- Polish the hell out of everything
-- dev test, get a few people to play it
-- get it on a ghpages site
-- write some tests, run some audits, try to break it
-
-## STAGE 6
-
-- Beat the clock
-- local head to head
-- local head to head against computer
-
-## STAGE 7
-
-- online play vs person
-- online play of the additional game types
-- local unlimited game that gets harder (using reshuffles and scrolling maybe?)
-
-## STAGE 8
-
-- toggleable audio (toggle state stored in db)
-- social api interaction
+- [ ] online play vs person
+- [ ] online play of the additional game types
+- [ ] local unlimited game that gets harder (using reshuffles and scrolling maybe?)
+- [ ] audio (toggle state and files maybe stored in db)
+- [ ] social api interaction
