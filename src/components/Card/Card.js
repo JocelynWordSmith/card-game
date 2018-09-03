@@ -2,11 +2,9 @@ import React from 'react'
 import { events, byTwo } from '../../utilities/utilities'
 
 import styles from './Card.scss'
+import { turnCountNameSpace, revertDelay } from '../../utilities/copyConfig'
 
-// non props shared config
 // putting at top for easier changes
-const turnCountNameSpace = 'cardClicked'
-const revertDelay = 400
 const hiddenTextSign = 'x'
 const hiddenSrSign = 'hidden'
 const getLabel = (idx, sign, matched) =>

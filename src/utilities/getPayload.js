@@ -13,17 +13,16 @@ const payloads = {
     url: 'https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json',
   },
 }
-;(() => {
-  Object.keys(payloads).forEach(key => {
-    get(key)
-      .then(val => {
-        payloads[key].data = val
-      })
-      .catch(() => {
-        payloads[key].data = null
-      })
-  })
-})()
+
+Object.keys(payloads).forEach(key => {
+  get(key)
+    .then(val => {
+      payloads[key].data = val
+    })
+    .catch(() => {
+      payloads[key].data = null
+    })
+})
 
 const getPayload = (payloadId, force) =>
   new Promise(resolve => {

@@ -1,0 +1,14 @@
+.LeaderBoard {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 10px 15px 10px;
+  background: slategray;
+  width: 45%;
+  > h2 {
+      color: white;
+  }
+  th, td {
+    text-align: left;
+    padding: 2px 4px 2px 4px;
+  }
+}

@@ -3,10 +3,8 @@ import React from 'react'
 import Messenger from '../Messenger/Messenger'
 import InteractionView from '../InteractionView/InteractionView'
 import { keygen, events } from '../../utilities/utilities'
+import { keyPrefix, restartNamespace } from '../../utilities/copyConfig'
 import styles from './App.scss'
-
-const restartNamespace = 'newGame'
-const keyPrefix = 'gamecount-'
 
 class App extends React.Component {
   constructor(props) {

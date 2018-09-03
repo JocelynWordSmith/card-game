@@ -2,10 +2,9 @@ import React from 'react'
 
 import GameBoard from '../GameBoard/GameBoard'
 import Menu from '../Menu/Menu'
+import LeaderBoard from '../LeaderBoard/LeaderBoard'
 import { events, gameSetting } from '../../utilities/utilities'
-
-const difficultySetting = 'difficulty'
-const startGameNamespace = 'gameStart'
+import { difficultySetting, startGameNamespace } from '../../utilities/copyConfig'
 
 class InteractionView extends React.Component {
   constructor(props) {
@@ -36,7 +35,12 @@ class InteractionView extends React.Component {
     if (this.state.started) {
       return <GameBoard difficulty={difficulty()} />
     }
-    return <Menu difficulty={difficulty} />
+    return (
+      <div>
+        <Menu difficulty={difficulty} />
+        <LeaderBoard />
+      </div>
+    )
   }
 }
 

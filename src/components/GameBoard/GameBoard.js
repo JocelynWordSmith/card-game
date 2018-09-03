@@ -2,14 +2,15 @@ import React from 'react'
 
 import Card from '../Card/Card'
 import { getPayload, shuffleArray, events, mapIdToArr, counter } from '../../utilities/utilities'
+import {
+  payloadId,
+  payloadTarget,
+  optionTextTarget,
+  cardSignKey,
+  turnCountNameSpace,
+  endGameNamespace,
+} from '../../utilities/copyConfig'
 import styles from './GameBoard.scss'
-
-const payloadId = 'GAME_DATA'
-const payloadTarget = 'levels'
-const optionTextTarget = 'difficulty'
-const cardSignKey = 'cards'
-const turnCountNameSpace = 'cardClicked'
-const endGameNamespace = 'gameEnd'
 
 const CardCollection = ({ gameCounter, cardData = [] }) => (
   <form className={styles.GameBoard}>

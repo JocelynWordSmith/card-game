@@ -3,12 +3,14 @@ import PropTypes from 'prop-types'
 
 import TimerContainer, { formatTime } from '../Timer/Timer'
 import { keygen, events } from '../../utilities/utilities'
-import getMessage from './getMessage'
+import {
+  turnCountNameSpace,
+  startGameNamespace,
+  endGameNamespace,
+  difficultySetting,
+} from '../../utilities/copyConfig'
+import GetMessages from './GetMessages'
 import styles from './Messenger.scss'
-
-const turnCountNameSpace = 'cardClicked'
-const startGameNamespace = 'gameStart'
-const endGameNamespace = 'gameEnd'
 
 // This will display the title of the game when the menu is visisble
 // This will display the next instruction when the game is in progress
@@ -23,24 +25,45 @@ class Messenger extends React.Component {
     super(props)
     this.state = {
       turns: 0,
-      gameStart: false,
-      gameEnd: false,
       timerNamespace: `timer${keygen()}`,
       time: formatTime(-1),
     }
   }
 
-  componentDidMount() {
+  subCount() {
+    return events.sub(turnCountNameSpace, turnData => {
+      const { turns, sign, match } = turnData
+      return this.setState({ turns, sign, match })
+    })
+  }
+
+  subStart() {
+    return events.sub(startGameNamespace, gameStart =>
+      this.setState({ gameStart: !!gameStart, player: gameStart })
+    )
+  }
+
+  subEnd() {
+    return events.sub(endGameNamespace, gameEnd => {
+      this.setState({ gameEnd })
+    })
+  }
+
+  subTime() {
     const { timerNamespace } = this.state
-    this.subs = [
-      events.sub(turnCountNameSpace, turnData => {
-        const { turns, sign, match } = turnData
-        this.setState({ turns, sign, match })
-      }),
-      events.sub(startGameNamespace, gameStart => this.setState({ gameStart })),
-      events.sub(endGameNamespace, gameEnd => this.setState({ gameEnd })),
-      events.sub(timerNamespace, time => this.setState({ time: formatTime(time) })),
-    ]
+    return events.sub(timerNamespace, time => {
+      this.setState({ time: formatTime(time) })
+    })
+  }
+
+  subDifficulty() {
+    return events.sub(difficultySetting, difficulty => {
+      this.setState({ difficulty })
+    })
+  }
+
+  componentDidMount() {
+    this.subs = [this.subCount(), this.subStart(), this.subEnd(), this.subTime()]
   }
 
   componentWillUnmount() {
@@ -53,7 +76,7 @@ class Messenger extends React.Component {
     return (
       <div className={styles.Messenger}>
         <h1 aria-live="polite" className={styles.Messenger}>
-          {getMessage(this.state)}
+          {GetMessages(this.state)}
         </h1>
         <ShowTimer timerNamepace={timerNamespace} turns={turns} />
       </div>

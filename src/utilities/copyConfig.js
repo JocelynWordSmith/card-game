@@ -1,0 +1,57 @@
+const dbKey = 'highScores'
+const restartNamespace = 'newGame'
+const turnCountNameSpace = 'cardClicked'
+const startGameNamespace = 'gameStart'
+const endGameNamespace = 'gameEnd'
+const difficultySetting = 'difficulty'
+const keyPrefix = 'gamecount-'
+const revertDelay = 400
+const payloadId = 'GAME_DATA'
+const payloadTarget = 'levels'
+const optionTextTarget = 'difficulty'
+const cardSignKey = 'cards'
+const inputId = 'playerName'
+const inputLabel = 'Player Name'
+const gameSubmitText = 'Start Game'
+const dropdownId = 'difficultySelect'
+const dropdownLabel = 'Game difficulty'
+
+export {
+  dbKey,
+  restartNamespace,
+  turnCountNameSpace,
+  startGameNamespace,
+  endGameNamespace,
+  difficultySetting,
+  keyPrefix,
+  revertDelay,
+  payloadId,
+  payloadTarget,
+  optionTextTarget,
+  cardSignKey,
+  inputId,
+  inputLabel,
+  gameSubmitText,
+  dropdownId,
+  dropdownLabel,
+}
+
+export default {
+  dbKey,
+  restartNamespace,
+  turnCountNameSpace,
+  startGameNamespace,
+  endGameNamespace,
+  difficultySetting,
+  keyPrefix,
+  revertDelay,
+  payloadId,
+  payloadTarget,
+  optionTextTarget,
+  cardSignKey,
+  inputId,
+  inputLabel,
+  gameSubmitText,
+  dropdownId,
+  dropdownLabel,
+}
