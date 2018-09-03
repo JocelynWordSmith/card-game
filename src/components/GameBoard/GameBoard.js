@@ -12,9 +12,11 @@ const turnCountNameSpace = 'cardClicked'
 const endGameNamespace = 'gameEnd'
 
 const CardCollection = ({ gameCounter, cardData = [] }) => (
-  <div className={styles.GameBoard}>
-    {cardData.map(item => <Card gameCounter={gameCounter} key={item.id} sign={item.val} />)}
-  </div>
+  <form className={styles.GameBoard}>
+    {cardData.map((item, idx) => (
+      <Card gameCounter={gameCounter} key={item.id} sign={item.val} idx={idx} />
+    ))}
+  </form>
 )
 
 class Cards extends React.Component {

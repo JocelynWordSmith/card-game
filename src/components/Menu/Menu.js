@@ -31,7 +31,7 @@ const Instructions = () => {
   return (
     <div>
       <h2>{header}</h2>
-      {steps.map(item => <p key={item.id}>{item.val}</p>)}
+      <ol>{steps.map(item => <li key={item.id}>{item.val}</li>)}</ol>
     </div>
   )
 }

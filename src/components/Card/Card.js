@@ -1,10 +1,16 @@
 import React from 'react'
 import { events, byTwo } from '../../utilities/utilities'
 
+import styles from './Card.scss'
+
 // non props shared config
 // putting at top for easier changes
 const turnCountNameSpace = 'cardClicked'
 const revertDelay = 400
+const hiddenTextSign = 'x'
+const hiddenSrSign = 'hidden'
+const getLabel = (idx, sign, matched) =>
+  `card number ${idx + 1}'s card face is ${sign}. ${matched ? 'this card has been matched' : ''}`
 
 class Card extends React.Component {
   constructor(props) {
@@ -74,23 +80,31 @@ class Card extends React.Component {
   }
 
   static getClassname(disabled, matched) {
-    if (matched) return 'matched'
-    if (disabled) return 'disabled'
-    return 'active'
+    if (matched) return styles.matched
+    if (disabled) return styles.disabled
+    return styles.active
   }
 
   render() {
     const { disabled, matched } = this.state
-    const { sign } = this.props
+    const { sign, idx } = this.props
     const { getClassname } = this.constructor
     const classname = getClassname(disabled, matched)
+    const text = disabled ? sign : hiddenTextSign
+    // sign to be read to screen readers
+    const srSign = disabled ? sign : hiddenSrSign
+    const label = getLabel(idx, srSign, matched)
 
     return (
-      <div>
-        <button className={classname} onClick={this.handleClick} aria-pressed={disabled}>
-          {disabled ? sign : 'x'}
-        </button>
-      </div>
+      <button
+        type="button"
+        className={classname}
+        onClick={this.handleClick}
+        aria-pressed={disabled}
+        aria-label={label}
+      >
+        {text}
+      </button>
     )
   }
 }

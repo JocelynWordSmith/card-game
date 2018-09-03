@@ -5,8 +5,12 @@ import { events } from '../../utilities/utilities'
 const restartNamespace = 'newGame'
 const messages = {
   title: 'Memory Card Game',
-  round1: 'Select your first card',
-  round2: 'Select your second card',
+  round1: (sign, match) => {
+    const isMatch = `It was ${match ? '' : 'not'} a match`
+    const isSign = sign ? `You selected a ${sign}. ${isMatch}. ` : ''
+    return `${isSign}Select a card`
+  },
+  round2: sign => `You selected a ${sign}. Select your second card`,
   challenge: 'Think you can do better?',
   restart: 'Click here to restart the game',
   victory: (time, turns) =>
@@ -29,11 +33,12 @@ const EndGameMsg = ({ time, turns }) => {
   )
 }
 
-const getMessage = ({ turns, gameStart, gameEnd, time }) => {
-  if (!gameStart) return messages.title
+const getMessage = ({ turns, gameStart, gameEnd, time, sign, match }) => {
+  const { title, round1, round2 } = messages
+  if (!gameStart) return title
   if (gameEnd) return EndGameMsg({ time, turns })
-  if (turns % 2 === 0) return messages.round1
-  return messages.round2
+  if (turns % 2 === 0) return round1(sign, match)
+  return round2(sign)
 }
 
 export default getMessage

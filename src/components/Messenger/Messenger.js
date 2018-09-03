@@ -33,7 +33,10 @@ class Messenger extends React.Component {
   componentDidMount() {
     const { timerNamespace } = this.state
     this.subs = [
-      events.sub(turnCountNameSpace, turnData => this.setState({ turns: turnData.turns })),
+      events.sub(turnCountNameSpace, turnData => {
+        const { turns, sign, match } = turnData
+        this.setState({ turns, sign, match })
+      }),
       events.sub(startGameNamespace, gameStart => this.setState({ gameStart })),
       events.sub(endGameNamespace, gameEnd => this.setState({ gameEnd })),
       events.sub(timerNamespace, time => this.setState({ time: formatTime(time) })),
@@ -49,7 +52,7 @@ class Messenger extends React.Component {
 
     return (
       <div className={styles.Messenger}>
-        <h1 aria-live="assertive" className={styles.Messenger}>
+        <h1 aria-live="polite" className={styles.Messenger}>
           {getMessage(this.state)}
         </h1>
         <ShowTimer timerNamepace={timerNamespace} turns={turns} />

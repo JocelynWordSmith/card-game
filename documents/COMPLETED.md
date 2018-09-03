@@ -50,3 +50,31 @@
             - THEN the timer will stop counting
             - AND a message will be injected into the visible header containing a victory message and the elapsed time
             - ~~AND the user will returned to the title screen~~ STAGE2
+
+## STAGE 2
+
+### Usability
+
+- [x] the button will have supplemental text indicating it is selected (primarily for screen readers)
+- [x] a significant ~~border~~ color change will occur (dark red or blue for contrast sake)
+- [x] aria-pressed or aria-selected true/false to indicate card state
+- [x] a message indicating that the cards DO or DO NOT match will be injected into an aria live container/header which is visible
+- [x] a message indicating that the cards match will appear on the card to separate it from selected cards in play
+- [x] ~~each card will have visible identifying text (row and column)~~ will not do since viewport dictates row/col
+- [x] ~~each card will have visible interaction instructions (click/press/select card to flip) for sighted users with other impairments~~ instead of this i will have persisted instructions on the page
+
+### Gameplay
+
+- [x] the cards will be in a pseudo random ordering by their designated symbols (i should say the _symbols_ will be in a pseudo random order since the cards don't really care)
+- [x]the user can return to the title screen after completion
+- [x] ~~WHILE the title screen is loading, the object from [this url](https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json) will be fetched~~ i store it, but i don't get it until requested so i only half did this
+
+### Scalability
+
+- [x] split out crowded code
+- [x] fix pub/sub so that unsub works
+- [x] can now sub with third param and if event was already pubbed, the callback will fire
+- [x] The API data will be stored in memory
+- [x] move card 'type' into state
+- [x] if the cards request fails, the game will have fallback options for local play
+- [x] impliment local storage using index db
