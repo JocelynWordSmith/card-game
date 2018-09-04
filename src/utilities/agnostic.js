@@ -24,12 +24,11 @@ function counter(nameSpace, turns = 0) {
 }
 
 // shared tracker for game difficulty
-function gameSetting(nameSpace) {
+function gameSetting() {
   let setting = null
   return function set(newSetting) {
     if (newSetting) {
       setting = newSetting
-      events.pub(nameSpace, setting)
     }
     return setting
   }

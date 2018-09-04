@@ -3,17 +3,14 @@ import React from 'react'
 import GameBoard from '../GameBoard/GameBoard'
 import Menu from '../Menu/Menu'
 import LeaderBoard from '../LeaderBoard/LeaderBoard'
-import { events, gameSetting } from '../../utilities/utilities'
-import { difficultySetting, startGameNamespace } from '../../utilities/copyConfig'
+import { startGameNamespace } from '../../utilities/copyConfig'
+import { events } from '../../utilities/utilities'
 
 class InteractionView extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      difficulty: gameSetting(difficultySetting),
-    }
+    this.state = {}
   }
-
   gameStartCallback(started) {
     if (started) {
       this.setState({ started })
@@ -30,11 +27,10 @@ class InteractionView extends React.Component {
   }
 
   render() {
-    const { difficulty } = this.state
+    const { difficulty } = this.props
+    const hasStarted = this.state && this.state.started
 
-    if (this.state.started) {
-      return <GameBoard difficulty={difficulty()} />
-    }
+    if (hasStarted) return <GameBoard difficulty={difficulty()} />
     return (
       <div>
         <Menu difficulty={difficulty} />

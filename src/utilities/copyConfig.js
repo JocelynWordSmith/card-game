@@ -1,9 +1,8 @@
-const dbKey = 'highScores'
+const dbKey = 'highScores2'
 const restartNamespace = 'newGame'
 const turnCountNameSpace = 'cardClicked'
 const startGameNamespace = 'gameStart'
 const endGameNamespace = 'gameEnd'
-const difficultySetting = 'difficulty'
 const keyPrefix = 'gamecount-'
 const revertDelay = 400
 const payloadId = 'GAME_DATA'
@@ -22,7 +21,6 @@ export {
   turnCountNameSpace,
   startGameNamespace,
   endGameNamespace,
-  difficultySetting,
   keyPrefix,
   revertDelay,
   payloadId,
@@ -42,7 +40,6 @@ export default {
   turnCountNameSpace,
   startGameNamespace,
   endGameNamespace,
-  difficultySetting,
   keyPrefix,
   revertDelay,
   payloadId,

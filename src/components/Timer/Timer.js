@@ -44,12 +44,13 @@ class TimerContainer extends React.Component {
   }
 
   tick() {
-    const { timerNamepace } = this.props
+    const { shareTime } = this.props
     const seconds = this.state.secondsElapsed + 1
+
     this.setState({
       secondsElapsed: seconds,
     })
-    events.pub(timerNamepace, seconds)
+    shareTime(formatTime(seconds))
   }
 
   render() {

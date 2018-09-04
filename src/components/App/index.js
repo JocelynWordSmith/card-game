@@ -2,7 +2,7 @@ import React from 'react'
 
 import Messenger from '../Messenger/Messenger'
 import InteractionView from '../InteractionView/InteractionView'
-import { keygen, events } from '../../utilities/utilities'
+import { keygen, events, gameSetting } from '../../utilities/utilities'
 import { keyPrefix, restartNamespace } from '../../utilities/copyConfig'
 import styles from './App.scss'
 
@@ -11,6 +11,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       key: `${keyPrefix}${keygen()}`,
+      difficulty: gameSetting(),
     }
     this.restartGame = this.restartGame.bind(this)
   }
@@ -24,11 +25,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { key } = this.state
+    const { key, difficulty } = this.state
     return (
       <div key={key} className={styles.App}>
-        <Messenger />
-        <InteractionView />
+        <Messenger difficulty={difficulty} />
+        <InteractionView difficulty={difficulty} />
       </div>
     )
   }

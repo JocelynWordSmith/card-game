@@ -2,12 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import TimerContainer, { formatTime } from '../Timer/Timer'
-import { keygen, events } from '../../utilities/utilities'
+import { events } from '../../utilities/utilities'
 import {
   turnCountNameSpace,
   startGameNamespace,
   endGameNamespace,
-  difficultySetting,
 } from '../../utilities/copyConfig'
 import GetMessages from './GetMessages'
 import styles from './Messenger.scss'
@@ -17,17 +16,20 @@ import styles from './Messenger.scss'
 //      select first card, select second card, you got a match, you did not get a match, etc...
 // This will display when the game has been won along with the final time/score
 
-const ShowTimer = ({ turns, timerNamepace }) =>
-  turns > 0 ? <TimerContainer timerNamepace={timerNamepace} /> : formatTime(-1)
+const ShowTimer = ({ turns, shareTime }) =>
+  turns > 0 ? <TimerContainer shareTime={shareTime} /> : formatTime(-1)
+
+const LiveHeader = props => <h1 aria-live="polite">{props.children}</h1>
 
 class Messenger extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       turns: 0,
-      timerNamespace: `timer${keygen()}`,
       time: formatTime(-1),
+      difficulty: this.props.difficulty,
     }
+    this.shareTime = this.shareTime.bind(this)
   }
 
   subCount() {
@@ -49,21 +51,12 @@ class Messenger extends React.Component {
     })
   }
 
-  subTime() {
-    const { timerNamespace } = this.state
-    return events.sub(timerNamespace, time => {
-      this.setState({ time: formatTime(time) })
-    })
-  }
-
-  subDifficulty() {
-    return events.sub(difficultySetting, difficulty => {
-      this.setState({ difficulty })
-    })
+  shareTime(time) {
+    this.setState({ time })
   }
 
   componentDidMount() {
-    this.subs = [this.subCount(), this.subStart(), this.subEnd(), this.subTime()]
+    this.subs = [this.subCount(), this.subStart(), this.subEnd()]
   }
 
   componentWillUnmount() {
@@ -71,14 +64,12 @@ class Messenger extends React.Component {
   }
 
   render() {
-    const { turns, timerNamespace } = this.state
+    const { turns } = this.state
 
     return (
       <div className={styles.Messenger}>
-        <h1 aria-live="polite" className={styles.Messenger}>
-          {GetMessages(this.state)}
-        </h1>
-        <ShowTimer timerNamepace={timerNamespace} turns={turns} />
+        <LiveHeader>{GetMessages(this.state)}</LiveHeader>
+        <ShowTimer shareTime={this.shareTime} turns={turns} />
       </div>
     )
   }
