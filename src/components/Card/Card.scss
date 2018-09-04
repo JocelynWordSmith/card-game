@@ -1,9 +1,22 @@
-.matched {
-    background: green;
-    cursor: pointer;
-    color: white;
+.Card {
+  font-size: 18px;
+  margin: 10px;
+  height: 45px;
+  width: 45px;
+  background: white;
+
+  &:focus {
+    outline: solid 4px blue;
+  }
 }
+
+.matched {
+  background: green;
+  cursor: pointer;
+  color: white;
+}
+
 .disabled {
-    background: red;
-    cursor: pointer;
+  background: red;
+  cursor: pointer;
 }

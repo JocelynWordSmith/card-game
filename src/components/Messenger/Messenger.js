@@ -10,16 +10,23 @@ import {
 } from '../../utilities/copyConfig'
 import GetMessages from './GetMessages'
 import styles from './Messenger.scss'
+import tStyles from '../Timer/Timer.scss'
 
 // This will display the title of the game when the menu is visisble
 // This will display the next instruction when the game is in progress
 //      select first card, select second card, you got a match, you did not get a match, etc...
 // This will display when the game has been won along with the final time/score
 
-const ShowTimer = ({ turns, shareTime }) =>
-  turns > 0 ? <TimerContainer shareTime={shareTime} /> : formatTime(-1)
+const ShowTimer = ({ turns, shareTime }) => {
+  if (turns > 0) return <TimerContainer shareTime={shareTime} />
+  return <div className={tStyles.Timer}>{formatTime(-1)}</div>
+}
 
-const LiveHeader = props => <h1 aria-live="polite">{props.children}</h1>
+const LiveHeader = props => (
+  <h1 aria-live="polite" className={styles.LiveHeader}>
+    {props.children}
+  </h1>
+)
 
 class Messenger extends React.Component {
   constructor(props) {

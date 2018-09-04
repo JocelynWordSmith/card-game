@@ -2,6 +2,7 @@ import React from 'react'
 
 import { GameDifficulty, PlayerName, GameOptionSubmit } from './ConfigInputs'
 import { events, getPayload, mapIdToArr } from '../../utilities/utilities'
+import styles from './GameConfig.scss'
 import {
   payloadId,
   payloadTarget,
@@ -43,7 +44,7 @@ class GameConfig extends React.Component {
     const clickCallback = () => events.pub(startGameNamespace, this.state.name)
 
     return (
-      <form>
+      <form className={styles.GameConfig}>
         <PlayerName captureInput={captureInput} disabled={disabled} />
         <GameDifficulty setDifficulty={setDifficulty} options={options} disabled={disabled} />
         <GameOptionSubmit disabled={disabled} clickCallback={clickCallback} />

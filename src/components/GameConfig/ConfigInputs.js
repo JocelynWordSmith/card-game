@@ -8,13 +8,18 @@ import {
   dropdownLabel,
   optionTextTarget,
 } from '../../utilities/copyConfig'
+import styles from './GameConfig.scss'
 
 const GameOptionSubmit = ({ disabled, clickCallback }) => {
   const type = 'button'
-  const className = 'GameOptionSubmit'
 
   return (
-    <button type={type} className={className} disabled={disabled} onClick={clickCallback}>
+    <button
+      type={type}
+      className={styles.GameOptionSubmit}
+      disabled={disabled}
+      onClick={clickCallback}
+    >
       {gameSubmitText}
     </button>
   )
@@ -32,14 +37,14 @@ const OptionCollection = ({ options }) =>
   })
 
 const PlayerName = ({ captureInput, disabled }) => (
-  <div>
+  <div className={styles.PlayerName}>
     <label htmlFor={inputId}>{inputLabel}</label>
     <input id={inputId} type="text" onInput={captureInput} disabled={disabled} />
   </div>
 )
 
 const GameDifficulty = ({ setDifficulty, options, disabled }) => (
-  <div>
+  <div className={styles.GameDifficulty}>
     <label htmlFor={dropdownId}>{dropdownLabel}</label>
     <select id={dropdownId} onChange={setDifficulty} disabled={disabled}>
       {!disabled && <OptionCollection options={options} />}

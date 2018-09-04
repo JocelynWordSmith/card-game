@@ -5,6 +5,7 @@ import Menu from '../Menu/Menu'
 import LeaderBoard from '../LeaderBoard/LeaderBoard'
 import { startGameNamespace } from '../../utilities/copyConfig'
 import { events } from '../../utilities/utilities'
+import styles from './InteractionView.scss'
 
 class InteractionView extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class InteractionView extends React.Component {
 
     if (hasStarted) return <GameBoard difficulty={difficulty()} />
     return (
-      <div>
+      <div className={styles.InteractionView}>
         <Menu difficulty={difficulty} />
         <LeaderBoard />
       </div>

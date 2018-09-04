@@ -46,6 +46,8 @@ function shuffleArray(array) {
   return shuff
 }
 
+// checks if number isn't zero and is even
+// i use it to check if it is the first or second round of a turn
 const byTwo = num => !!num && !(num % 2)
 
 export { counter, gameSetting, mapIdToArr, byTwo, shuffleArray }

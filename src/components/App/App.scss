@@ -1,17 +1,9 @@
 .App {
-    padding: 10px;
-    margin: 5px;
-    border: solid 1px black;
-    > h2 {
-        padding-bottom: 10px;
-    }
-    button, select {
-        font-size: 18px;
-        margin: 10px;
-    }
-    button:focus,
-    select:focus {
-        outline: solid 4px blue;
-    }
+  padding: 10px;
+  margin: 5px;
+  border: solid 1px black;
 
+  > h2 {
+    padding-bottom: 10px;
+  }
 }

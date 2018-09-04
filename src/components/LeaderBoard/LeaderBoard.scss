@@ -1,14 +1,55 @@
 .LeaderBoard {
+  padding: 10px;
+  padding-bottom: 15px;
+  background: slategray;
+  font-size: 24px;
+  color: white;
+  min-width: 360px;
   display: inline-block;
   margin: 10px;
-  padding: 10px 10px 15px 10px;
-  background: slategray;
-  width: 45%;
-  > h2 {
-      color: white;
+
+  h2 {
+    color: white;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
   }
-  th, td {
-    text-align: left;
-    padding: 2px 4px 2px 4px;
+
+  table {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 65px;
+  }
+
+  thead {
+    border-bottom: solid 1px black;
+
+    th {
+      padding-bottom: 12px;
+    }
+  }
+
+  caption {
+    text-transform: capitalize;
+    padding: 6px 6px 15px 6px;
+  }
+
+  th,
+  td {
+    text-align: center;
+    // padding: 2px 4px 2px 4px;
+    padding-top: 12px;
+    font-size: 20px;
+  }
+
+  button {
+    margin-top: 30px;
+    margin-left: 20%;
+    margin-bottom: 20px;
+    display: inline-block;
+    height: 40px;
+    width: 60%;
+    background: white;
+    font-size: 18px;
   }
 }

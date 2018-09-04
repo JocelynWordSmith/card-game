@@ -30,7 +30,7 @@
 - [x] fix bug where cards are clickable during revertDelay
 - [x] leader board using persisted storage from stage two
 - [x] improved scoring system
-- [ ] implement a better visual design for all interactions (just focus on mobile and use flexbox, desktop should be easy after)
+- [x] implement a better visual design for all interactions (just focus on mobile and use flexbox, desktop should be easy after) NOTE followup task added, only general blocking/flow was done
 - [ ] TEST YOUR SHIT (write tests, run audits)
 - [ ] refactor State management
 - [ ] revisit semantics

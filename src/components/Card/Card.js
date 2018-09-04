@@ -103,7 +103,7 @@ class Card extends React.Component {
     return (
       <button
         type="button"
-        className={classname}
+        className={`${styles.Card} ${classname}`}
         onClick={this.handleClick}
         aria-pressed={disabled}
         aria-label={label}
