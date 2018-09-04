@@ -95,21 +95,26 @@ class Card extends React.Component {
     const { sign, idx } = this.props
     const { getClassname } = this.constructor
     const classname = getClassname(disabled, matched)
-    const text = disabled ? sign : hiddenTextSign
     // sign to be read to screen readers
     const srSign = disabled ? sign : hiddenSrSign
     const label = getLabel(idx, srSign, matched)
 
     return (
-      <button
-        type="button"
-        className={`${styles.Card} ${classname}`}
-        onClick={this.handleClick}
-        aria-pressed={disabled}
-        aria-label={label}
-      >
-        {text}
-      </button>
+      <div className={`${styles.FlipContainer}`}>
+        <button
+          type="button"
+          className={`${styles.Card} ${classname}`}
+          onClick={this.handleClick}
+          aria-pressed={disabled}
+          aria-label={label}
+        >
+          {label}
+        </button>
+        <div className={`${styles.scene} ${disabled ? styles.isFlipped : ''}`}>
+          <div className={`${styles.flipItem} ${classname}`}>{hiddenTextSign}</div>
+          <div className={`${styles.flipItem} ${styles.backFace} ${classname}`}>{sign}</div>
+        </div>
+      </div>
     )
   }
 }
