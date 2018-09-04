@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { get, set } from 'idb-keyval'
-import { events } from '../../utilities/utilities'
-import { dbKey, restartNamespace } from '../../utilities/copyConfig'
+import EndGameMsg from './EndGameMsg'
 
 const messages = {
   title: 'Memory Card Game',
@@ -17,48 +15,6 @@ const dynamicMessages = {
     return `${isSign}Select a card`
   },
   round2: ({ sign }) => `You selected a ${sign}. Select your second card`,
-  victory: (time, turns, player) =>
-    `Congratulations ${player}! You have beaten the game in ${time} with just ${turns} turns!`,
-}
-
-class RestartButton extends React.Component {
-  constructor(args) {
-    super(args)
-    this.wipeMemoryGame = this.wipeMemoryGame.bind(this)
-    this.saveScore()
-  }
-
-  saveScore() {
-    const { score } = this.props
-    get(dbKey)
-      .then(val => {
-        if (val) val.push(score)
-        set(dbKey, val || [score]).catch(error => {
-          throw error
-        })
-      })
-      .catch(error => {
-        throw error
-      })
-  }
-
-  render() {
-    const { text } = this.props
-    const restartGame = () => events.pub(restartNamespace, true)
-
-    return <button onClick={restartGame}>{text}</button>
-  }
-}
-
-const EndGameMsg = ({ time, turns, player }) => {
-  const score = { time, turns, player }
-  const { victory, challenge, restart } = messages
-  return (
-    <div>
-      <p>{victory(time, turns)}</p>
-      {challenge} <RestartButton text={restart} score={score} />
-    </div>
-  )
 }
 
 const GetMessages = props => {
@@ -67,7 +23,7 @@ const GetMessages = props => {
   const { round1, round2 } = dynamicMessages
 
   if (!gameStart) return title
-  if (gameEnd) return EndGameMsg(props)
+  if (gameEnd) return <EndGameMsg {...props} messages={messages} />
   if (turns % 2 === 0) return round1(props)
   return round2(props)
 }

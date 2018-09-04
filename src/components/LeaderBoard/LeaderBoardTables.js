@@ -1,4 +1,5 @@
 import React from 'react'
+import { keygen } from '../../utilities/keygen'
 
 const LeaderBoardHead = ({ text }) => {
   const { c1, c2, c3, c4 } = text
@@ -16,7 +17,6 @@ const LeaderBoardHead = ({ text }) => {
 
 const LeaderBoardBody = ({ scores, text }) => {
   const { c1, c2, c3, c4 } = text
-
   return (
     <tbody>
       {scores.map((score, idx) => {
@@ -36,8 +36,7 @@ const LeaderBoardBody = ({ scores, text }) => {
 }
 
 const LeaderBoardTable = props => {
-  const { scores, text } = props
-  const { tableCaption } = text
+  const { scores, text, tableCaption } = props
   return (
     <table>
       <caption>{tableCaption}</caption>
@@ -47,4 +46,17 @@ const LeaderBoardTable = props => {
   )
 }
 
-export default LeaderBoardTable
+const LeaderBoardTables = props => {
+  const { scores } = props
+
+  return Object.keys(scores).map(scoreLevel => {
+    const tableConfig = {
+      scores: scores[scoreLevel],
+      tableCaption: scoreLevel,
+      text: props.text,
+    }
+    return <LeaderBoardTable key={keygen()} {...tableConfig} />
+  })
+}
+
+export default LeaderBoardTables
