@@ -1,6 +1,4 @@
-$softWhite: hsl(211, 20%, 91%);
-$bgPurple: #4D394B;
-$favFont: Helvetica, Georgia, 'Times New Roman', Times, serif;
+@import '../App/App.scss';
 
 .GameConfig {
   color: $softWhite;

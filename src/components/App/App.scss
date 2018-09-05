@@ -1,3 +1,17 @@
+$smheight: 160px;
+$smwidth: 100px;
+// $smurl: 'https://picsum.photos/#{$smwidth}/#{$smheight}?random';
+$smurl: '../../assets/images/house.jpg';
+$height: 280px;
+$width: 160px;
+// $url: 'https://picsum.photos/#{$width}/#{$height}?random';
+$url: '../../assets/images/bridge.jpg';
+$radius: 8px;
+$outlineColor: cornflowerblue;
+$bgPurple: #4d394b;
+$softWhite: hsl(213, 100%, 98%);
+$favFont: Helvetica, Georgia, 'Times New Roman', Times, serif;
+
 .App {
   background: rgb(246, 247, 249);
   min-height: 100vh;
