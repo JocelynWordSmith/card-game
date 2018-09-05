@@ -2,10 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import styles from './Card.scss'
+import { hiddenTextSign } from '../../assets/content/config'
 
-const hiddenTextSign = 'x'
-
-const CardButton = ({ handleClick, disabled, label }) => (
+export const CardButton = ({ handleClick, disabled, label }) => (
   <button
     type="button"
     className={`${styles.Card}`}
@@ -23,7 +22,7 @@ CardButton.propTypes = {
   handleClick: PropTypes.func,
 }
 
-const CardFaces = ({ disabled, classname, sign }) => (
+export const CardFaces = ({ disabled, classname, sign }) => (
   <div className={`${styles.scene} ${disabled ? styles.isFlipped : ''}`}>
     <div className={`${styles.flipItem} ${classname}`}>
       <span>{hiddenTextSign}</span>
@@ -39,5 +38,3 @@ CardFaces.propTypes = {
   sign: PropTypes.string,
   disabled: PropTypes.bool,
 }
-
-export default { CardButton, CardFaces }

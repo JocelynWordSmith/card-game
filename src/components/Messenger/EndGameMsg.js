@@ -3,10 +3,7 @@ import PropTypes from 'prop-types'
 
 import { get, set } from 'idb-keyval'
 import { events } from '../../utilities/utilities'
-import { dbKey, restartNamespace } from '../../utilities/copyConfig'
-
-const victory = (time, turns, player) =>
-  `Congratulations ${player}! You have beaten the game in ${time} with just ${turns} turns!`
+import { dbKey, restartNamespace, victory } from '../../assets/content/config'
 
 class RestartButton extends React.Component {
   constructor(props) {

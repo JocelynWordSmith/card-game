@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 
 import { events, byTwo } from '../../utilities/utilities'
 import styles from './Card.scss'
-import { turnCountNameSpace, revertDelay } from '../../utilities/copyConfig'
-import CardControls from './CardControls'
-
-const { CardButton, CardFaces } = CardControls
-const hiddenSrSign = 'hidden'
-const getLabel = (idx, sign, matched) =>
-  `card number ${idx + 1}'s card face is ${sign}. ${matched ? 'this card has been matched' : ''}`
+import {
+  turnCountNameSpace,
+  revertDelay,
+  hiddenSrSign,
+  getLabel,
+} from '../../assets/content/config'
+import { CardButton, CardFaces } from './CardControls'
 
 // bugfix to keep cards from being selected while the unmatched cards are visible
 // (i.e. when the second card is clicked but the revert delay hasn't finished)
@@ -40,8 +40,10 @@ class Card extends React.Component {
     const isRoundTwo = byTwo(turns)
     const matched = this.signMatch(sign)
     const noUIChange = this.state.matched || !disabled || !isRoundTwo
+    const fireChange = () => this.setState({ lastClick, turns, disabled: matched, matched })
+
     if (noUIChange) return this.setState({ lastClick, turns })
-    return this.setState({ lastClick, turns, disabled: matched, matched })
+    return fireChange()
   }
 
   componentDidMount() {

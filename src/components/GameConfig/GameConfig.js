@@ -9,7 +9,7 @@ import {
   payloadTarget,
   optionTextTarget,
   startGameNamespace,
-} from '../../utilities/copyConfig'
+} from '../../assets/content/config'
 
 class GameConfig extends React.Component {
   constructor(props) {

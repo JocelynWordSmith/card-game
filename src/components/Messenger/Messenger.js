@@ -7,7 +7,7 @@ import {
   turnCountNameSpace,
   startGameNamespace,
   endGameNamespace,
-} from '../../utilities/copyConfig'
+} from '../../assets/content/config'
 import GetMessages from './GetMessages'
 import styles from './Messenger.scss'
 import tStyles from '../Timer/Timer.scss'

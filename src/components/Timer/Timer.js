@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import styles from './Timer.scss'
 import { events } from '../../utilities/utilities'
+import { endGameNamespace } from '../../assets/content/config'
 
 export const formatTime = time => {
   if (time < 0) return '--:--'
@@ -14,8 +15,6 @@ export const formatTime = time => {
   if (h > 0) return [h, mm, ss].join(':')
   return `${m}:${ss}`
 }
-
-const endGameNamespace = 'gameEnd'
 
 const Timer = ({ time = 0 }) => <div className={styles.timer}>{formatTime(time)}</div>
 

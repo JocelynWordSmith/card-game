@@ -8,7 +8,7 @@ import {
   dropdownId,
   dropdownLabel,
   optionTextTarget,
-} from '../../utilities/copyConfig'
+} from '../../assets/content/config'
 import styles from './GameConfig.scss'
 
 const GameOptionSubmit = ({ disabled, clickCallback }) => {

@@ -10,7 +10,7 @@ import {
   cardSignKey,
   turnCountNameSpace,
   endGameNamespace,
-} from '../../utilities/copyConfig'
+} from '../../assets/content/config'
 import styles from './GameBoard.scss'
 
 const CardCollection = ({ gameCounter, cardData = [] }) => (

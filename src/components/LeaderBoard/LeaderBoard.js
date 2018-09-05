@@ -4,7 +4,7 @@ import { get, del } from 'idb-keyval'
 
 import LeaderBoardTables from './LeaderBoardTables'
 import { mapIdToArr } from '../../utilities/utilities'
-import { dbKey } from '../../utilities/copyConfig'
+import { dbKey, lbSectionHeader, lbClearText, lbText } from '../../assets/content/config'
 import styles from './LeaderBoard.scss'
 
 const processDisplayScores = scores => {
@@ -41,14 +41,9 @@ class LeaderBoard extends React.Component {
     const clearBoard = this.clearBoard.bind(this)
     this.state = {
       scores: {},
-      sectionHeader: 'Leaderboards:',
-      clearText: 'Clear Leaderboard',
-      text: {
-        c1: 'Rank',
-        c2: 'Name',
-        c3: 'Time',
-        c4: 'Turns',
-      },
+      sectionHeader: lbSectionHeader,
+      clearText: lbClearText,
+      text: lbText,
       clearBoard,
     }
   }

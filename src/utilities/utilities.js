@@ -2,7 +2,7 @@ import { counter, gameSetting, mapIdToArr, byTwo, shuffleArray } from './agnosti
 import events from './events'
 import { keygenClosure, keygen } from './keygen'
 import getPayload from './getPayload'
-import copyConfig from './copyConfig'
+import copyConfig from '../assets/content/config'
 
 export {
   counter,

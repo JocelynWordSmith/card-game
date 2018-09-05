@@ -3,7 +3,7 @@ import React from 'react'
 import Messenger from '../Messenger/Messenger'
 import InteractionView from '../InteractionView/InteractionView'
 import { keygen, events, gameSetting } from '../../utilities/utilities'
-import { keyPrefix, restartNamespace } from '../../utilities/copyConfig'
+import { keyPrefix, restartNamespace } from '../../assets/content/config'
 import styles from './App.scss'
 
 class App extends React.Component {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import GameBoard from '../GameBoard/GameBoard'
 import Menu from '../Menu/Menu'
 import LeaderBoard from '../LeaderBoard/LeaderBoard'
-import { startGameNamespace } from '../../utilities/copyConfig'
+import { startGameNamespace } from '../../assets/content/config'
 import { events } from '../../utilities/utilities'
 import styles from './InteractionView.scss'
 
