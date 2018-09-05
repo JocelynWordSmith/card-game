@@ -58,4 +58,8 @@ class TimerContainer extends React.Component {
   }
 }
 
+TimerContainer.propTypes = {
+  shareTime: PropTypes.func,
+}
+
 export default TimerContainer

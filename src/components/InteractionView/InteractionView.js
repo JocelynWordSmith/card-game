@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import GameBoard from '../GameBoard/GameBoard'
 import Menu from '../Menu/Menu'
@@ -39,6 +40,10 @@ class InteractionView extends React.Component {
       </div>
     )
   }
+}
+
+InteractionView.propTypes = {
+  difficulty: PropTypes.func,
 }
 
 export default InteractionView

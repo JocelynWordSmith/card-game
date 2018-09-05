@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { keygen } from '../../utilities/keygen'
 
 const LeaderBoardHead = ({ text }) => {
@@ -13,6 +15,11 @@ const LeaderBoardHead = ({ text }) => {
       </tr>
     </thead>
   )
+}
+
+// passing object to render, does not mutate
+LeaderBoardHead.propTypes = {
+  text: PropTypes.object,
 }
 
 const LeaderBoardBody = ({ scores, text }) => {
@@ -35,6 +42,13 @@ const LeaderBoardBody = ({ scores, text }) => {
   )
 }
 
+// passing array to render, does not mutate
+// passing object to render, does not mutate
+LeaderBoardBody.propTypes = {
+  text: PropTypes.object,
+  scores: PropTypes.array,
+}
+
 const LeaderBoardTable = props => {
   const { scores, text, tableCaption } = props
   return (
@@ -44,6 +58,14 @@ const LeaderBoardTable = props => {
       <LeaderBoardBody scores={scores} text={text} />
     </table>
   )
+}
+
+// passing array to render, does not mutate
+// passing object to render, does not mutate
+LeaderBoardTable.propTypes = {
+  tableCaption: PropTypes.string,
+  text: PropTypes.object,
+  scores: PropTypes.array,
 }
 
 const LeaderBoardTables = props => {
@@ -57,6 +79,11 @@ const LeaderBoardTables = props => {
     }
     return <LeaderBoardTable key={keygen()} {...tableConfig} />
   })
+}
+
+// passing array to render, does not mutate
+LeaderBoardTables.propTypes = {
+  scores: PropTypes.object,
 }
 
 export default LeaderBoardTables

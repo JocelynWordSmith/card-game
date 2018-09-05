@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import EndGameMsg from './EndGameMsg'
 
@@ -26,6 +27,12 @@ const GetMessages = props => {
   if (gameEnd) return <EndGameMsg {...props} messages={messages} />
   if (turns % 2 === 0) return round1(props)
   return round2(props)
+}
+
+GetMessages.propTypes = {
+  turns: PropTypes.string,
+  gameStart: PropTypes.bool,
+  gameEnd: PropTypes.bool,
 }
 
 export default GetMessages

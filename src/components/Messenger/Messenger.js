@@ -23,11 +23,20 @@ const ShowTimer = ({ turns, shareTime }) => {
   // return <div className={tStyles.Timer}>{formatTime(-1)}</div>
 }
 
+ShowTimer.propTypes = {
+  turns: PropTypes.number,
+  shareTime: PropTypes.func,
+}
+
 const LiveHeader = props => (
   <h1 aria-live="polite" className={styles.LiveHeader}>
     {props.children}
   </h1>
 )
+
+LiveHeader.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+}
 
 class Messenger extends React.Component {
   constructor(props) {
@@ -84,7 +93,7 @@ class Messenger extends React.Component {
 }
 
 Messenger.propTypes = {
-  turns: PropTypes.number,
+  difficulty: PropTypes.func,
 }
 
 export default Messenger

@@ -1,7 +1,7 @@
 import nodeFetch from 'node-fetch'
 import { get, set } from 'idb-keyval'
 
-import * as MOCK_DATA from './TEMP_API_MOCK.json'
+import * as MOCK_DATA from '../assets/documents/TEMP_API_MOCK.json'
 
 // webpack workaround for fetch/window conflict with node-fetch
 // should be future proof as well

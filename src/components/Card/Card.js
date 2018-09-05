@@ -1,6 +1,7 @@
 import React from 'react'
-import { events, byTwo } from '../../utilities/utilities'
+import PropTypes from 'prop-types'
 
+import { events, byTwo } from '../../utilities/utilities'
 import styles from './Card.scss'
 import { turnCountNameSpace, revertDelay } from '../../utilities/copyConfig'
 import CardControls from './CardControls'
@@ -13,6 +14,7 @@ const getLabel = (idx, sign, matched) =>
 // bugfix to keep cards from being selected while the unmatched cards are visible
 // (i.e. when the second card is clicked but the revert delay hasn't finished)
 // this fixes the issue without adding complexity to the program,
+// it essentially just acts like a static field for the class
 let delayActive = false
 
 class Card extends React.Component {
@@ -105,6 +107,12 @@ class Card extends React.Component {
       </div>
     )
   }
+}
+
+Card.propTypes = {
+  sign: PropTypes.string,
+  idx: PropTypes.number,
+  gameCounter: PropTypes.func,
 }
 
 export default Card

@@ -1,10 +1,9 @@
 import { keygen } from './keygen'
 import events from './events'
 
-// This file should only contain vanilla methods without 3rd party dependencies
-// avoid importing unless this file gets larger and needs to be split up
-
 // assign unique id to array elements
+// its a convenience method, but not very performant when used on larger data
+// but i only have small data
 const mapIdToArr = arr =>
   arr.map(item => ({
     val: item,
@@ -35,8 +34,8 @@ function gameSetting() {
 }
 
 // Durstenfeld shuffle, adapted from one online
-// not as fast as possible due to cloning the array
-// but seems like a better idea
+// not as fast as possible due to shallow cloning the array
+// but seems like a better idea than mutating
 function shuffleArray(array) {
   const shuff = array.slice()
   for (let i = shuff.length - 1; i > 0; i -= 1) {

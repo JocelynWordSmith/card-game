@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { GameDifficulty, PlayerName, GameOptionSubmit } from './ConfigInputs'
 import { events, getPayload, mapIdToArr } from '../../utilities/utilities'
@@ -53,6 +54,10 @@ class GameConfig extends React.Component {
   }
 
   componentDidMount() {}
+}
+
+GameConfig.propTypes = {
+  difficulty: PropTypes.func,
 }
 
 export default GameConfig

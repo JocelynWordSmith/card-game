@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { get, del } from 'idb-keyval'
 
 import LeaderBoardTables from './LeaderBoardTables'
@@ -27,6 +28,12 @@ const LeaderBoardHeader = ({ sectionHeader, clearText, clearBoard }) => (
     <hr />
   </div>
 )
+
+LeaderBoardHeader.propTypes = {
+  sectionHeader: PropTypes.string,
+  clearText: PropTypes.string,
+  clearBoard: PropTypes.func,
+}
 
 class LeaderBoard extends React.Component {
   constructor(props) {

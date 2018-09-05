@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Card from '../Card/Card'
 import { getPayload, shuffleArray, events, mapIdToArr, counter } from '../../utilities/utilities'
@@ -19,6 +20,13 @@ const CardCollection = ({ gameCounter, cardData = [] }) => (
     ))}
   </form>
 )
+
+// passing an array as a prop specifically to render it
+// no mutations occur
+CardCollection.propTypes = {
+  cardData: PropTypes.array,
+  gameCounter: PropTypes.func,
+}
 
 class Cards extends React.Component {
   constructor(props) {
@@ -68,6 +76,10 @@ class Cards extends React.Component {
 
     return <CardCollection gameCounter={gameCounter} cardData={cardData} />
   }
+}
+
+Cards.propTypes = {
+  difficulty: PropTypes.string,
 }
 
 export default Cards

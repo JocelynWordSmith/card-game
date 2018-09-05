@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import {
   inputId,
@@ -25,6 +26,12 @@ const GameOptionSubmit = ({ disabled, clickCallback }) => {
   )
 }
 
+// not mutating array, just rendering
+GameOptionSubmit.propTypes = {
+  disabled: PropTypes.bool,
+  clickCallback: PropTypes.func,
+}
+
 const OptionCollection = ({ options }) =>
   options.map(item => {
     const value = item.val[optionTextTarget]
@@ -36,12 +43,22 @@ const OptionCollection = ({ options }) =>
     )
   })
 
+// not mutating array, just rendering
+OptionCollection.propTypes = {
+  options: PropTypes.array,
+}
+
 const PlayerName = ({ captureInput, disabled }) => (
   <div className={styles.PlayerName}>
     <label htmlFor={inputId}>{inputLabel}</label>
     <input id={inputId} type="text" onInput={captureInput} disabled={disabled} />
   </div>
 )
+
+PlayerName.propTypes = {
+  captureInput: PropTypes.func,
+  disabled: PropTypes.bool,
+}
 
 const GameDifficulty = ({ setDifficulty, options, disabled }) => (
   <div className={styles.GameDifficulty}>
@@ -51,5 +68,12 @@ const GameDifficulty = ({ setDifficulty, options, disabled }) => (
     </select>
   </div>
 )
+
+// not mutating array, just rendering
+GameDifficulty.propTypes = {
+  setDifficulty: PropTypes.func,
+  options: PropTypes.array,
+  disabled: PropTypes.bool,
+}
 
 export { GameDifficulty, PlayerName, GameOptionSubmit }

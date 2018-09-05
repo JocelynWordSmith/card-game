@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { get, set } from 'idb-keyval'
 import { events } from '../../utilities/utilities'
@@ -44,6 +45,14 @@ class RestartButton extends React.Component {
   }
 }
 
+RestartButton.propTypes = {
+  time: PropTypes.string,
+  turns: PropTypes.number,
+  text: PropTypes.string,
+  player: PropTypes.string,
+  difficulty: PropTypes.func,
+}
+
 const EndGameMsg = props => {
   const { time, turns, messages, player } = props
   const { challenge, restart } = messages
@@ -53,6 +62,14 @@ const EndGameMsg = props => {
       {challenge} <RestartButton text={restart} {...props} />
     </div>
   )
+}
+
+// passing object to render, does not mutate
+EndGameMsg.propTypes = {
+  time: PropTypes.string,
+  turns: PropTypes.number,
+  messages: PropTypes.object,
+  player: PropTypes.string,
 }
 
 export default EndGameMsg

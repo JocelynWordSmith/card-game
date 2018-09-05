@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import GameConfig from '../GameConfig/GameConfig'
 import styles from './Menu.scss'
@@ -41,6 +42,11 @@ const InstructionsList = props => (
   </ol>
 )
 
+// passing array to render, does not mutate
+InstructionsList.propTypes = {
+  list: PropTypes.array,
+}
+
 const Instructions = () => {
   const { header, steps } = getInstructionData()
   return (
@@ -62,5 +68,9 @@ const Menu = ({ difficulty }) => (
     <GameConfig difficulty={difficulty} />
   </div>
 )
+
+Menu.propTypes = {
+  difficulty: PropTypes.func,
+}
 
 export default Menu
