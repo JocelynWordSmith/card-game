@@ -1,7 +1,8 @@
 $bgPurple: #4D394B;
+$favFont: Helvetica, Georgia, 'Times New Roman', Times, serif;
 
 .Timer {
   color: $bgPurple;
-  font-family: Helvetica, Georgia, 'Times New Roman', Times, serif;
+  font-family: $favFont;
   padding: 10px;
 }

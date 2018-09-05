@@ -45,11 +45,11 @@ class RestartButton extends React.Component {
 }
 
 const EndGameMsg = props => {
-  const { time, turns, messages } = props
+  const { time, turns, messages, player } = props
   const { challenge, restart } = messages
   return (
     <div>
-      <p>{victory(time, turns)}</p>
+      <p>{victory(time, turns, player)}</p>
       {challenge} <RestartButton text={restart} {...props} />
     </div>
   )

@@ -1,9 +1,12 @@
 $bgPurple: #4D394B;
 $softWhite: hsl(213, 100%, 98%);
+$favFont: Helvetica, Georgia, 'Times New Roman', Times, serif;
 
 .Messenger {
-  padding: 44px 10px 15px 10px;
-  font-family: Helvetica, Georgia, 'Times New Roman', Times, serif;
+  padding: 10px;
+  padding-top: 44px;
+  padding-bottom: 15px;
+  font-family: $favFont;
   color: $bgPurple;
   max-width: 300px;
   margin: 0 auto;
@@ -22,16 +25,21 @@ $softWhite: hsl(213, 100%, 98%);
   z-index: 100;
 
   button {
-    font-family: Helvetica, Georgia, 'Times New Roman', Times, serif;
+    font-family: $favFont;
     font-size: 24px;
     background: none;
     border: none;
     cursor: pointer;
     color: blue;
+    outline: none;
 
-    &:focus,
     &:hover {
       border-bottom: solid 1px blue;
+    }
+
+    &:focus,
+    &:active {
+      border-bottom: solid 3px blue;
     }
   }
 }

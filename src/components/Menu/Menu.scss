@@ -1,5 +1,6 @@
 $softWhite: hsl(211, 20%, 91%);
 $bgPurple: #4D394B;
+$favFont: Helvetica, Georgia, 'Times New Roman', Times, serif;
 
 .Menu {
   display: inline-block;
@@ -7,7 +8,7 @@ $bgPurple: #4D394B;
   padding: 10px;
   padding-bottom: 15px;
   border: solid 2px $softWhite;
-  font-family: Helvetica, Georgia, 'Times New Roman', Times, serif;
+  font-family: $favFont;
 }
 
 .InstructionHeader {
