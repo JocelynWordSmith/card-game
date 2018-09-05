@@ -1,10 +1,43 @@
+$bgPurple: #4D394B;
+$softWhite: hsl(213, 100%, 98%);
+
 .Messenger {
-  padding: 10px 10px 15px 10px;
-  background: lightgray;
+  padding: 44px 10px 15px 10px;
   font-family: Helvetica, Georgia, 'Times New Roman', Times, serif;
+  color: $bgPurple;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .LiveHeader {
   padding: 10px;
-  font-size: 18px;
+  font-size: 24px;
+  text-align: center;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: $softWhite;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+
+  button {
+    font-family: Helvetica, Georgia, 'Times New Roman', Times, serif;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: blue;
+
+    &:focus,
+    &:hover {
+      border-bottom: solid 1px blue;
+    }
+  }
+}
+
+@media only screen and (min-width: 641px) {
+  .Messenger {
+    max-width: 850px;
+  }
 }

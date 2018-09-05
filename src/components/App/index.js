@@ -27,10 +27,10 @@ class App extends React.Component {
   render() {
     const { key, difficulty } = this.state
     return (
-      <div key={key} className={styles.App}>
+      <main key={key} className={styles.App}>
         <Messenger difficulty={difficulty} />
         <InteractionView difficulty={difficulty} />
-      </div>
+      </main>
     )
   }
 }

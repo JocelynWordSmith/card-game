@@ -6,10 +6,10 @@ const LeaderBoardHead = ({ text }) => {
   return (
     <thead>
       <tr>
-        <th scope="column">{c1}</th>
-        <th scope="column">{c2}</th>
-        <th scope="column">{c3}</th>
-        <th scope="column">{c4}</th>
+        <th scope="col">{c1}</th>
+        <th scope="col">{c2}</th>
+        <th scope="col">{c3}</th>
+        <th scope="col">{c4}</th>
       </tr>
     </thead>
   )

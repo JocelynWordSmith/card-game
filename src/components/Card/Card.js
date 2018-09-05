@@ -3,9 +3,9 @@ import { events, byTwo } from '../../utilities/utilities'
 
 import styles from './Card.scss'
 import { turnCountNameSpace, revertDelay } from '../../utilities/copyConfig'
+import CardControls from './CardControls'
 
-// putting at top for easier changes
-const hiddenTextSign = 'x'
+const { CardButton, CardFaces } = CardControls
 const hiddenSrSign = 'hidden'
 const getLabel = (idx, sign, matched) =>
   `card number ${idx + 1}'s card face is ${sign}. ${matched ? 'this card has been matched' : ''}`
@@ -96,24 +96,12 @@ class Card extends React.Component {
     const { getClassname } = this.constructor
     const classname = getClassname(disabled, matched)
     // sign to be read to screen readers
-    const srSign = disabled ? sign : hiddenSrSign
-    const label = getLabel(idx, srSign, matched)
+    const label = getLabel(idx, disabled ? sign : hiddenSrSign, matched)
 
     return (
       <div className={`${styles.FlipContainer}`}>
-        <button
-          type="button"
-          className={`${styles.Card} ${classname}`}
-          onClick={this.handleClick}
-          aria-pressed={disabled}
-          aria-label={label}
-        >
-          {label}
-        </button>
-        <div className={`${styles.scene} ${disabled ? styles.isFlipped : ''}`}>
-          <div className={`${styles.flipItem} ${classname}`}>{hiddenTextSign}</div>
-          <div className={`${styles.flipItem} ${styles.backFace} ${classname}`}>{sign}</div>
-        </div>
+        <CardButton handleClick={this.handleClick} disabled={disabled} label={label} />
+        <CardFaces disabled={disabled} classname={classname} sign={sign} />
       </div>
     )
   }

@@ -1,20 +1,26 @@
+$softWhite: hsl(211, 20%, 91%);
+$bgPurple: #4D394B;
+
 .Menu {
   display: inline-block;
   margin: 10px;
-  padding: 10px 10px 15px 10px;
-  background: white;
+  padding: 10px;
+  padding-bottom: 15px;
+  border: solid 2px $softWhite;
   font-family: Helvetica, Georgia, 'Times New Roman', Times, serif;
-  // max-width: 600px;
 }
 
 .InstructionHeader {
-  color: blue;
+  color: $bgPurple;
   padding: 10px;
-  font-size: 22px;
+  padding-bottom: 30px;
+  font-size: 32px;
+  text-align: center;
 }
 
 .Instructions {
-  color: black;
+  color: $bgPurple;
   padding: 10px;
   font-size: 16px;
+  line-height: 1.3;
 }

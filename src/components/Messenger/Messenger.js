@@ -19,7 +19,8 @@ import tStyles from '../Timer/Timer.scss'
 
 const ShowTimer = ({ turns, shareTime }) => {
   if (turns > 0) return <TimerContainer shareTime={shareTime} />
-  return <div className={tStyles.Timer}>{formatTime(-1)}</div>
+  return <div className={tStyles.Timer} />
+  // return <div className={tStyles.Timer}>{formatTime(-1)}</div>
 }
 
 const LiveHeader = props => (

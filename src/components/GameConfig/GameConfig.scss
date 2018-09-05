@@ -1,14 +1,20 @@
+$softWhite: hsl(211, 20%, 91%);
+$bgPurple: #4D394B;
+$favFont: Helvetica, Georgia, 'Times New Roman', Times, serif;
+
 .GameConfig {
+  color: $softWhite;
   display: block;
   margin: 10px;
   padding: 30px 10px 15px 10px;
-  background: lightgray;
-  font-family: Helvetica, Georgia, 'Times New Roman', Times, serif;
+  background: $bgPurple;
+  font-family: $favFont;
   font-size: 18px;
   max-width: 600px;
 }
 
 .PlayerName {
+  font-family: $favFont;
   text-align: center;
 
   label,

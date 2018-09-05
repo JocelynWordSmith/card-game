@@ -84,5 +84,4 @@
 
 - [x] ~~Polish the hell out of everything~~ not really useful task
 - [x] ~~refactor Attention to detail~~ not sure what i meant by this
-- [x] ~~make the card flips animate~~ will not do
 - [x] ~~dev test, get a few people to play it~~ not a task just ongoing

@@ -1,15 +1,23 @@
+$bgPurple: #4D394B;
+$softWhite: hsl(211, 20%, 91%);
+$favFont: Helvetica, Georgia, 'Times New Roman', Times, serif;
+
 .LeaderBoard {
-  padding: 10px;
-  padding-bottom: 15px;
-  background: slategray;
+  padding: 20px 35px;
+  background: rgb(71, 90, 109);
   font-size: 24px;
-  color: white;
+  color: $softWhite;
   min-width: 360px;
   display: inline-block;
   margin: 10px;
+  border: solid 2px white;
+  font-family: $favFont;
 
+  // color: $bgPurple;
+  // background: $softWhite;
+  // border: solid 2px $bgPurple;
   h2 {
-    color: white;
+    color: $softWhite;
     width: 100%;
     display: inline-block;
     text-align: center;
@@ -18,11 +26,14 @@
   table {
     width: 100%;
     padding: 20px;
-    margin-bottom: 65px;
+  }
+
+  table:first-of-type {
+    margin-bottom: 45px;
   }
 
   thead {
-    border-bottom: solid 1px black;
+    border-bottom: solid 1px $softWhite;
 
     th {
       padding-bottom: 12px;
@@ -31,18 +42,19 @@
 
   caption {
     text-transform: capitalize;
-    padding: 6px 6px 15px 6px;
+    padding: 6px;
+    padding: 15px;
   }
 
   th,
   td {
     text-align: center;
-    // padding: 2px 4px 2px 4px;
     padding-top: 12px;
     font-size: 20px;
   }
 
   button {
+    color: $bgPurple;
     margin-top: 30px;
     margin-left: 20%;
     margin-bottom: 20px;
@@ -51,5 +63,6 @@
     width: 60%;
     background: white;
     font-size: 18px;
+    border: none;
   }
 }

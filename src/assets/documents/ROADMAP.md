@@ -31,6 +31,10 @@
 - [x] leader board using persisted storage from stage two
 - [x] improved scoring system
 - [x] implement a better visual design for all interactions (just focus on mobile and use flexbox, desktop should be easy after) NOTE followup task added, only general blocking/flow was done
+- [x] make the card flips animate
+- [x] leaderboard now only holds top 3
+- [x] cards have dynamic image backrounds
+- [x] app lo oks less shitty
 - [ ] TEST YOUR SHIT (write tests, run audits)
 - [ ] refactor State management
 - [ ] revisit semantics

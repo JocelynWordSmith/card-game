@@ -9,16 +9,16 @@ const getInstructionData = () => {
   const steps = [
     {
       head: 'To start the game:',
-      body: ['Select a difficulty from the dropdown', 'Then press submit'],
+      body: ['Enter your name', 'Select a difficulty from the dropdown', 'Then press submit'],
     },
     {
       head: 'Once you have started the game:',
       body: [
-        'You will select a card, and it will be shown to you',
-        'You will select a second card, and it will be shown to you',
-        'If both of the cards match, they stay face up',
-        "If they don't match, they flip back down.",
-        'Once you have matched all the cards, you win the game!',
+        'Select a card, the face will appear',
+        'Select a second card, the face will appear',
+        'If they match, they stay face up',
+        "If they don't match, they flip back over",
+        'Match all the cards and you win the game!',
         'Try to finish as fast as you can with as few turns as possible',
       ],
     },

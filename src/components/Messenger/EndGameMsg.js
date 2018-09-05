@@ -23,6 +23,7 @@ class RestartButton extends React.Component {
         const diffArr = toSave[setting]
         if (diffArr) {
           diffArr.push(score)
+          toSave[setting] = diffArr.sort((a, b) => a.turns - b.turns).slice(0, 3)
         } else {
           toSave[setting] = [score]
         }
