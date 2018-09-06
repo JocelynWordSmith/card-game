@@ -6,9 +6,12 @@
 export const dbKey = 'highScores'
 // pub/sub event namespaces
 export const restartNamespace = 'newGame'
-export const turnCountNameSpace = 'cardClicked'
-export const startGameNamespace = 'gameStart'
-export const endGameNamespace = 'gameEnd'
+export const turnCountNameSpace = 'memoryCardTurn'
+// pattern to follow when multiple game types are added
+export const startGameSuffix = `-gameStart`
+export const endGameSuffix = `-gameEnd`
+export const startGameNamespace = `${turnCountNameSpace}${startGameSuffix}`
+export const endGameNamespace = `${turnCountNameSpace}${endGameSuffix}`
 // key attached to the page <main> element containing the game
 export const keyPrefix = 'gamecount-'
 // key to reference the url and data of the NYT game data

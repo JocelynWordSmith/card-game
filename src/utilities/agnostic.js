@@ -1,5 +1,6 @@
 import { keygen } from './keygen'
 import events from './events'
+import { endGameSuffix } from '../assets/content/config'
 
 // assign unique id to array elements
 // its a convenience method, but not very performant when used on larger data
@@ -11,12 +12,20 @@ const mapIdToArr = arr =>
   }))
 
 // shared counter for game turns
-function counter(nameSpace, turns = 0) {
+// using the namespace/sufix/prefix pattern seems game agnostic
+// TODO change match and pair nomenclature to 'score' and 'point'
+function counter(nameSpace, maxPairs) {
+  let [turns, matches] = [0, 0]
+  // think about moving game start logic here instead of pub/sub
+  // events.pub(`${nameSpace}${startGameSuffix}`)
   return function add(sign, match) {
     if (sign || sign === null) {
       turns += 1
-      const next = { turns, sign, match }
-      events.pub(nameSpace, next)
+      if (match) matches += 1
+
+      events.pub(nameSpace, { turns, sign, match, matches })
+      if (matches >= maxPairs)
+        events.pub(`${nameSpace}${endGameSuffix}`, { turns, sign, match, matches })
     }
     return turns
   }

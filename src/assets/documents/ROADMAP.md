@@ -33,17 +33,17 @@
 - [x] implement a better visual design for all interactions (just focus on mobile and use flexbox, desktop should be easy after) NOTE followup task added, only general blocking/flow was done
 - [x] make the card flips animate
 - [x] leaderboard now only holds top 3
-- [x] cards have dynamic image backrounds
-- [x] app lo oks less shitty
-- [ ] TEST YOUR SHIT (write tests, run audits)
-- [ ] refactor State management
-- [ ] revisit semantics
-- [ ] persist games and game state
+- [x] cards have ~~dynamic~~ image backrounds (dynamic images from lorem picsum was just extra overhead without a benefit other than seeing cool pictures sometimes. downside was that i couldn't really control for image color or contrast)
+- [x] make app look less shitty
+- [_] TEST YOUR SHIT (write tests, run audits)
+- [_] refactor State management (in progress)
+- [_] revisit semantics (in progress)
 - [x] refactor User experience
 - [x] refactor Overall code clarity and organization
 
 ## STAGE 4 (probably not getting here)
 
+- [ ] persist games and game state
 - [ ] create unopinionated data format in services to only return requested data
 - [ ] fullscreen mode
 - [ ] get it on a ghpages site

@@ -52,8 +52,6 @@ class GameConfig extends React.Component {
       </form>
     )
   }
-
-  componentDidMount() {}
 }
 
 GameConfig.propTypes = {

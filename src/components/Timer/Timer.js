@@ -26,7 +26,7 @@ class TimerContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      secondsElapsed: 0,
+      seconds: 0,
     }
   }
 
@@ -44,16 +44,14 @@ class TimerContainer extends React.Component {
 
   tick() {
     const { shareTime } = this.props
-    const seconds = this.state.secondsElapsed + 1
+    const seconds = this.state.seconds + 1
 
-    this.setState({
-      secondsElapsed: seconds,
-    })
+    this.setState({ seconds })
     shareTime(formatTime(seconds))
   }
 
   render() {
-    return <Timer time={this.state.secondsElapsed} />
+    return <Timer time={this.state.seconds} />
   }
 }
 

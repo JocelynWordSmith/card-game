@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 import { get, set } from 'idb-keyval'
 
 // offline backup
-import * as MOCK_DATA from '../assets/documents/TEMP_API_MOCK.json'
+import * as MOCK_DATA from '../assets/content/TEMP_API_MOCK.json'
 
 const payloads = {
   GAME_DATA: {
