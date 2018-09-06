@@ -13,7 +13,8 @@ class App extends React.Component {
       key: `${keyPrefix}${keygen()}`,
       difficulty: gameSetting(),
       // easiest way to prevent FOUC
-      // not for production
+      // is reverted when styles load in
+      // not a production solution
       display: { display: 'none' },
     }
     this.restartGame = this.restartGame.bind(this)

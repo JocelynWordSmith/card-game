@@ -18,14 +18,12 @@ import styles from './Messenger.scss'
 // This will display when the game has been won along with the final time/score
 
 const ShowTimer = ({ turns, shareTime }) => {
-  if (turns > 0)
-    return (
-      <div className={styles.time}>
-        {timerLabel} <TimerContainer shareTime={shareTime} />
-      </div>
-    )
-  return <div />
-  // return <div className={tStyles.Timer}>{formatTime(-1)}</div>
+  if (turns <= 0) return <div />
+  return (
+    <div className={styles.time}>
+      {timerLabel} <TimerContainer shareTime={shareTime} />
+    </div>
+  )
 }
 
 ShowTimer.propTypes = {
@@ -34,13 +32,15 @@ ShowTimer.propTypes = {
 }
 
 const LiveHeader = props => (
-  <h1 aria-live="polite" className={styles.LiveHeader}>
-    {props.children}
+  <section className={styles.LiveHeader}>
+    <h1 aria-live="polite">{props.children}</h1>
     <ShowTimer shareTime={props.shareTime} turns={props.turns} />
-  </h1>
+  </section>
 )
 
 LiveHeader.propTypes = {
+  shareTime: PropTypes.func,
+  turns: PropTypes.number,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
