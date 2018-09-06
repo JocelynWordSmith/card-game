@@ -1,87 +1,92 @@
 # NYT Web Code Test
 
-Thank you for your interest in The New York Times! This exercise will help us
-get to know you a bit as an engineer. Your task is to create a playable version
-of the card-matching game Memory. Your app should fetch the game data found
-found [here](https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json).
+Thank you for considering me for a development role at the New York Times. This project was my first real exposure to react, so regardless of the next steps it was good to have a reason to really dig in. Any advice or feedback is appreciated as I would like to continue using react in the future.
 
-## Code Test Guidelines
+## building the project
 
-The game should follow the basic rules of memory:
+I stayed on the given project, however i ran into some issues with Node v10 so it might be worth adding to the assignment not to use v10.
 
-* All cards begin face down.
-* The player turns one card face up, and then a second.
-  * If they match, the pair is removed from the game.
-  * If they do not match, both cards turn back over.
-* The game ends when the player finds all matching pairs.
+The node_modules and build folder have been removed.
 
-The only other requirement is that you incorporate the `Timer` component that
-we’ve included in the starter project. You may modify the component to better
-integrate with your app as a whole, but the timer should start when the first
-card is flipped over and stop when the game ends. Beyond that, the sky’s the
-limit. All other application and interface design decisions are left to your
-discretion.
+To build:
 
-When reviewing your submission, the following criteria will be considered:
+- uncompress the folder
+- `cd` into the project
+- make sure you are using Node v6 (I rolled back to 6.14.4)
+- run `npm install'
+- run 'npm run dev'
+- navigate to `localhost:3000` in your browser
 
-* **Overall code clarity and organization**: Does the app structure make sense?
-  Are components broken down in a sensible way? Can we follow the control flow
-  without a user manual?
-* **State management**: Is the application state handled in an elegant way? Do
-  the different pieces of state interact logically?
-* **Attention to detail**: Did you follow all the implementation and submission
-  instructions? Is your code reasonably bug-free?
-* **User experience**: Is the interface intuitive and responsive? How polished
-  does it feel?
+## project structure
+
+All the code I wrote is the in src directory
+
+```bash
+
+|_src
+  |_assets
+    |_content # holds copy, configuration, and mock data
+    |_documents # a bunch of stuff i wrote/used while working on this
+    |_images 
+  |_client # no work done in this folder
+  |_components
+    |_App
+    |_Card
+    |_GameBoard
+    |_GameConfig
+    |_InteractionView
+    |_LeaderBoard
+    |_Menu
+    |_Messenger
+    |_Timer
+  |_server # no work done in this folder
+  |_utilities
+    |_agnostic.js # general utility methods
+    |_events.js # pub/sub
+    |_getPayload.js # requests
+    |_keygetn.js # generate a number, does not generate same number twice
+    |_utilities.js # root utility export
+
+```
+
+## updated requirements
+
+revision of the requirements in the original README that worked better for me
+
+## REQUIREMENTS
+
+1. [x] All cards begin `face down`.
+1. [x] WHEN the first turn begins, the [`Timer` component](../src/components/Timer/Timer.js) will begin counting
+1. [x] A turn consists of turning one card face up, and then a second
+    - If they match, the pair is removed from play
+    - If they do not match, both cards turn back over
+1. [x] WHEN no cards remain in play the game ends
+1. [x] WHEN then game ends, the timer will stop
+1. [x] card data will be fetched from [this url](https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json)
 
 ## Extra Credit
 
-Provided your app satisfies everything in the previous section, anything else is
-optional. But if you find yourself with some time left over, here are some
-suggestions on ways you might extend your app and really make it stand out:
+1. I focused a lot on usability and semantics so app is completely accessible
+    - there are some color contrast things that will get hit by an audit, but they are false positives. It's text that matches it's background bc it's screen reader specific text. Its the text inside the button behind the cards if you want to look
+    - otherwise contrast and font stuff should be 100%
+    - contextual but non redundant text is provided
+    - light use of aria attributes (i prefer to use them only as needed and let the user agent handle most stuff) such as aria-live and aria-hidden
+    - landmarks, heading levels, input labels, and element structures (like the tables, and i used caption instead of summary bc summary is deprecated)
+    - all interactions should have significant, whether by focus indication, movement, or text
+1. direction feedback in the messenger component tells the user what they did and what to do next
+1. user can start a New game
+1. top 3 leaderboards for both easy and hard using indexedDB
+1. can clear the leaderboard
+1. pseudo random card order
+1. can store response data locally
+1. tracks score by turns as well as time
+1. animations
+1. hopefully i made good code choices too :)
 
-* Support for
-  [three-card matches](https://web-code-test-dot-nyt-games-prd.appspot.com/triples.json)
-* Progress saving for resuming an unfinished game
-* User-customizable card styles
-* Some sort of auditory experience
-* A scoring system beyond time spent solving
-* A leaderboard to record top solves
-* Additional modes of play (head-to-head, race-the-clock, etc.)
-* Accessibility features (keyboard navigation, voice-over effects, etc.)
-* Any other variations or enhancements you might dream up that would showcase
-  your creativity
 
-## Setup
+## Closing
 
-To help you get started†, we’ve created this starter project based on
-[NYT kyt](https://github.com/NYTimes/kyt) that uses Webpack, Node, Babel,
-Express, React and Sass + CSS Modules, all of which are technologies we use
-internally. Feel free to extend the `package.json` with any other packages that
-you might want to extend the app’s functionality (for data fetching, state
-handling, etc.).
+This was a fun project, and I look forward to any feedback, critical or otherwise, that you might have. Feel free to ignore the whole documentation folder its mostly just todo lists, and let me know if there are any questions i can answer.
 
-Clone this repository and run `npm install`, then `npm run dev` in the root
-directory to start up the development server. Once it’s running, you can view
-the app at `localhost:3000`††.
-
-If you’re looking for somewhere to start, a good place to dive in is `Game.js`,
-where we’ve left a placeholder `<div>` for you to build on. Good luck! We look
-forward to playing your game.
-
----
-
-†You are encouraged to use our scaffolding to minimize the time spent on
-configuration and let you jump right into coding your app. You may elect to use
-your own setup if you prefer, but if you do, be sure to include from-scratch
-installation instructions. Please track your changes through git either way; we
-are interested in your journey as well as your destination. When you’re
-finished, please zip up the project folder, upload it to a cloud store of your
-choice (Dropbox, Google Drive, etc.) and send a link to the address provided in
-your invitation; our spam filters don’t much care for attachments containing .js
-files. Replace the contents of this Readme with any special installation or
-gameplay instructions or general comments about the app not specifically called
-out in your code.
-
-††See the `scripts` in `package.json` for more commands you can run (e.g., for
-linting and running the test suite).
+Cheers,
+Joshua Smith
