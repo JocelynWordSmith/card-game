@@ -52,9 +52,11 @@ export const lbClearText = 'Clear Leaderboard'
 // column headers of a leaderboard
 export const lbText = { c1: 'Rank', c2: 'Name', c3: 'Time', c4: 'Turns' }
 
+// Messenger.js
+export const timerLabel = 'Time: '
 // EngGameMsg.js
 export const victory = (time, turns, player) =>
-  `Congratulations ${player}! You have beaten the game in ${time} with just ${turns} turns!`
+  `Congratulations ${player}! You have beaten the game in just ${turns} turns!`
 
 // GetMessages.js
 export const messages = {

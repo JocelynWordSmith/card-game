@@ -15,4 +15,7 @@ $favFont: Helvetica, Georgia, 'Times New Roman', Times, serif;
 .App {
   background: rgb(246, 247, 249);
   min-height: 100vh;
+  // reverts default display none to prevent FOUC
+  // works on my local, not a prod fix
+  display: block !important;
 }

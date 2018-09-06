@@ -14,19 +14,24 @@ import {
 class GameConfig extends React.Component {
   constructor(props) {
     super(props)
+    this.getOptions()
+    this.state = {}
     this.difficulty = props.difficulty
     this.setDifficulty = this.setDifficulty.bind(this)
     this.captureInput = this.captureInput.bind(this)
-    this.state = {}
-    this.getOptions()
+    this.submitClickCallback = this.submitClickCallback.bind(this)
+  }
+
+  submitDifficulty(options) {
+    const chosenDifficulty = options[0].val[optionTextTarget]
+    this.difficulty(chosenDifficulty)
   }
 
   getOptions() {
     getPayload(payloadId, true).then(response => {
       const options = mapIdToArr(response[payloadTarget])
       this.setState({ options })
-      const chosenDifficulty = options[0].val[optionTextTarget]
-      this.difficulty(chosenDifficulty)
+      this.submitDifficulty(options)
     })
   }
 
@@ -38,17 +43,20 @@ class GameConfig extends React.Component {
     this.setState({ name: event.target.value })
   }
 
+  submitClickCallback() {
+    events.pub(startGameNamespace, this.state.name)
+  }
+
   render() {
     const { options } = this.state
     const { setDifficulty, captureInput } = this
     const disabled = !options
-    const clickCallback = () => events.pub(startGameNamespace, this.state.name)
 
     return (
       <form className={styles.GameConfig}>
         <PlayerName captureInput={captureInput} disabled={disabled} />
         <GameDifficulty setDifficulty={setDifficulty} options={options} disabled={disabled} />
-        <GameOptionSubmit disabled={disabled} clickCallback={clickCallback} />
+        <GameOptionSubmit disabled={disabled} clickCallback={this.submitClickCallback} />
       </form>
     )
   }

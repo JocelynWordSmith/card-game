@@ -7,10 +7,10 @@ import {
   turnCountNameSpace,
   startGameNamespace,
   endGameNamespace,
+  timerLabel,
 } from '../../assets/content/config'
 import GetMessages from './GetMessages'
 import styles from './Messenger.scss'
-import tStyles from '../Timer/Timer.scss'
 
 // This will display the title of the game when the menu is visisble
 // This will display the next instruction when the game is in progress
@@ -18,8 +18,13 @@ import tStyles from '../Timer/Timer.scss'
 // This will display when the game has been won along with the final time/score
 
 const ShowTimer = ({ turns, shareTime }) => {
-  if (turns > 0) return <TimerContainer shareTime={shareTime} />
-  return <div className={tStyles.Timer} />
+  if (turns > 0)
+    return (
+      <div className={styles.time}>
+        {timerLabel} <TimerContainer shareTime={shareTime} />
+      </div>
+    )
+  return <div />
   // return <div className={tStyles.Timer}>{formatTime(-1)}</div>
 }
 
@@ -31,6 +36,7 @@ ShowTimer.propTypes = {
 const LiveHeader = props => (
   <h1 aria-live="polite" className={styles.LiveHeader}>
     {props.children}
+    <ShowTimer shareTime={props.shareTime} turns={props.turns} />
   </h1>
 )
 
@@ -52,19 +58,23 @@ class Messenger extends React.Component {
   subCount() {
     return events.sub(turnCountNameSpace, turnData => {
       const { turns, sign, match } = turnData
-      return this.setState({ turns, sign, match })
+      this.setState({ turns, sign, match })
     })
   }
 
   subStart() {
-    return events.sub(startGameNamespace, gameStart =>
+    // unsubs after first pub
+    const unsub = events.sub(startGameNamespace, gameStart => {
       this.setState({ gameStart: !!gameStart, player: gameStart })
-    )
+      unsub()
+    })
   }
 
   subEnd() {
-    return events.sub(endGameNamespace, gameEnd => {
+    // unsubs after first pub
+    const unsub = events.sub(endGameNamespace, gameEnd => {
       this.setState({ gameEnd })
+      unsub()
     })
   }
 
@@ -73,11 +83,15 @@ class Messenger extends React.Component {
   }
 
   componentDidMount() {
-    this.subs = [this.subCount(), this.subStart(), this.subEnd()]
+    this.subCount()
+    // subStart will clear itself
+    this.subStart()
+    // subEnd will clear itself
+    this.subEnd()
   }
 
   componentWillUnmount() {
-    this.subs.forEach(fn => fn())
+    this.subCount()
   }
 
   render() {
@@ -85,8 +99,9 @@ class Messenger extends React.Component {
 
     return (
       <div className={styles.Messenger}>
-        <LiveHeader>{GetMessages(this.state)}</LiveHeader>
-        <ShowTimer shareTime={this.shareTime} turns={turns} />
+        <LiveHeader shareTime={this.shareTime} turns={turns}>
+          {GetMessages(this.state)}
+        </LiveHeader>
       </div>
     )
   }

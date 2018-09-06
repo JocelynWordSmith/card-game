@@ -12,6 +12,9 @@ class App extends React.Component {
     this.state = {
       key: `${keyPrefix}${keygen()}`,
       difficulty: gameSetting(),
+      // easiest way to prevent FOUC
+      // not for production
+      display: { display: 'none' },
     }
     this.restartGame = this.restartGame.bind(this)
   }
@@ -25,9 +28,9 @@ class App extends React.Component {
   }
 
   render() {
-    const { key, difficulty } = this.state
+    const { key, difficulty, display } = this.state
     return (
-      <main key={key} className={styles.App}>
+      <main key={key} className={styles.App} style={display}>
         <Messenger difficulty={difficulty} />
         <InteractionView difficulty={difficulty} />
       </main>
