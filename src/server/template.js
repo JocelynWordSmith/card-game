@@ -16,7 +16,7 @@ export default vo => `<!DOCTYPE html>
         : ''
     }
 
-    <title>React mem</title>
+    <title>NYT Memory Game</title>
   </head>
 
   <body>
