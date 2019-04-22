@@ -1,13 +1,3 @@
-# NYT Web Code Test
-
-Thank you for considering me for a development role at the New York Times. This project was my first real exposure to react, so regardless of the next steps it was good to have a reason to really dig in. Any advice or feedback is appreciated as I would like to continue using react in the future.
-
-## building the project
-
-I stayed on the given project, however i ran into some issues with Node v10 so it might be worth adding to the assignment not to use v10.
-
-The node_modules and build folder have been removed.
-
 To build:
 
 - uncompress the folder
@@ -18,8 +8,6 @@ To build:
 - navigate to `localhost:3000` in your browser
 
 ## project structure
-
-All the code I wrote is the in src directory
 
 ```bash
 
