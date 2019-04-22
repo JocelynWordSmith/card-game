@@ -52,7 +52,6 @@ revision of the requirements in the original README that worked better for me
 1. [x] WHEN then game ends, the timer will stop
 1. [x] card data will be fetched from [this url](https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json)
 
-## Extra Credit
 
 1. I focused a lot on usability and semantics so app is completely accessible
     - there are some color contrast things that will get hit by an audit, but they are false positives. It's text that matches it's background bc it's screen reader specific text. Its the text inside the button behind the cards if you want to look
@@ -69,12 +68,3 @@ revision of the requirements in the original README that worked better for me
 1. can store response data locally
 1. tracks score by turns as well as time
 1. animations
-1. hopefully i made good code choices too :)
-
-
-## Closing
-
-This was a fun project, and I look forward to any feedback, critical or otherwise, that you might have. Feel free to ignore the whole documentation folder its mostly just todo lists, and let me know if there are any questions i can answer.
-
-Cheers,
-Joshua Smith
